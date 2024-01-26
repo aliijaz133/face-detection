@@ -56,7 +56,6 @@ function clearCanvas() {
      a.download = 'canvas.png';
      a.click();
    });
-
   }
 
   function loadCanvas() {
