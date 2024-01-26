@@ -27,3 +27,23 @@ border: 2px solid black;
 .panel-body {
 width:fit-content;
 }
+
+.panel-title {
+font-family:Times New Roman;
+font-size:50px;
+cursor:pointer;
+}
+
+.panel-title:hover {
+color:red;
+}
+
+.btn {
+padding:10px !important;
+font-weight:bold !important;
+}
+
+.btn:hover {
+background-color:green !important;
+color:white !important;
+}

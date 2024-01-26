@@ -18,14 +18,15 @@
                         <h3 class="panel-title text-center">Face Detection</h3>
                     </div>
                     <div class="panel-body">
-                        <canvas id="canvas" width="400" height="400"></canvas>
+                        <canvas id="canvas" width="400" height="400" title="Camera Not Found"></canvas>
                     </div>
-                    <div class="panel-footer">
+                   <div class="d-flex gap-2">
+                        <div class="panel-footer">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-default btn-sm" onclick="faceDetection()">Detect</button>
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="faceDetection()">Detect</button>
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +37,7 @@
                             <div class="col-md-12">
                                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-default btn-sm" onclick="clearCanvas()">Clear</button>
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="clearCanvas()">Clear</button>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +48,7 @@
                             <div class="col-md-12">
                                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-default btn-sm" onclick="saveCanvas()">Save</button>
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="saveCanvas()">Save</button>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +59,7 @@
                             <div class="col-md-12">
                                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-default btn-sm" onclick="loadCanvas()">Load</button>
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="loadCanvas()">Load</button>
                                     </div>
                                 </div>
                             </div>
@@ -69,12 +70,13 @@
                             <div class="col-md-12">
                                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                     <div class="btn-group" role="group">
-                                        <button type="button" class="btn btn-default btn-sm" onclick="loadImage()">Load Image</button>
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="loadImage()">Load Image</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                   </div>
                 </div>
             </div>
         </div>
