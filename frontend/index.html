@@ -39,7 +39,10 @@
                 data-placement="right"
                 title="Camera Not Found"
               >
-                <img src="{{ url_for('static', filename='your_image.jpg') }}" alt="Video on loading">
+                <img
+                  src="{{ url_for('static', filename='your_image.jpg') }}"
+                  alt="Video on loading"
+                />
               </canvas>
             </div>
             <div class="d-flex gap-2">
@@ -154,10 +157,13 @@
       </div>
     </div>
 
-  <form action="/show_image" method="post">
-        <label for="image_name">Enter the name of the image:</label>
-        <input type="text" name="image_name" required>
-        <input type="submit" value="Show Image">
+    <form action="/show_image" method="post">
+      <label for="image_name">Enter the name of the image:</label>
+      <input type="text" name="image_name" required />
+      <input type="submit" value="Show Image" />
     </form>
+
+    <h1>Time: </h1>
+    <p id="timeNow">{getTime}</p>
   </body>
 </html>
