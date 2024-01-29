@@ -31,7 +31,7 @@ class Face_Recognition_System:
 
         # Create a title label with a specified font
         self.title_text = "Face Recognition System"
-        self.title_lbl = Label(text=self.title_text, font=("Times New Roman", 25, "bold"), bg="black", fg="white")
+        self.title_lbl = Label(text=self.title_text, font=("Times New Roman", 35, "bold"), bg="black", fg="white")
         self.title_lbl.place(x=0, y=110, relwidth=1.0)  # Use relwidth to make the label span the full width
 
         # Configure column weights to allow for responsive resizing
@@ -40,6 +40,17 @@ class Face_Recognition_System:
 
         # Bind the window resize event to update the background image and title label
         self.root.bind("<Configure>", self.on_resize)
+
+        # Student Detail Button
+        img4 = Image.open(r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/detail_icon.png")
+        img4 = img4.resize((100, 100), Image.BICUBIC)
+        self.photoImg4 = ImageTk.PhotoImage(img4)
+
+        b1 = Button(image=self.photoImg4, cursor="hand2")
+        b1.place(x=50, y=200, width=220, height=220)
+
+        b1 = Button(text="Student Details", cursor="hand2")
+        b1.place(x=50, y=400, width=220, height=50)
 
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
