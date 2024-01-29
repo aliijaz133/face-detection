@@ -82,36 +82,61 @@ class Student:
 
         #Class Student Information
         Left_3rd_frame = LabelFrame(self.root, bd=2, relief=RIDGE, text="Class Student Information", font=("Times New Roman", 15))
-        Left_3rd_frame.place(x=70, y=270, width=620, height=200)
+        Left_3rd_frame.place(x=70, y=270, width=620, height=250)
         #Student ID:
         student_id_lbl = Label(Left_3rd_frame, text="Student Id:", font=("Cursive", 13))
-        student_id_lbl.grid(row=0, column=0, padx=10, sticky=W)
+        student_id_lbl.grid(row=0, column=0, padx=5, sticky=W)
         student_id_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
         student_id_entry.grid(row=0, column=1)
 
         #Student Name:
         student_name_lbl = Label(Left_3rd_frame, text="Student name:", font=("Cursive", 13))
-        student_name_lbl.grid(row=0, column=2, padx=10, sticky=W)
+        student_name_lbl.grid(row=0, column=2, padx=5, sticky=W)
         student_name_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
         student_name_entry.grid(row=0, column=3)
 
         #Student Roll No:
         student_rollNo_lbl = Label(Left_3rd_frame, text="Student Roll No:", font=("Cursive", 13))
-        student_rollNo_lbl.grid(row=2, column=0, padx=10, pady=15, sticky=W)
+        student_rollNo_lbl.grid(row=2, column=0, padx=5, pady=15, sticky=W)
         student_rollNo_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
-        student_rollNo_entry.grid(row=2, column=1, padx=10, pady=15, sticky=W)
+        student_rollNo_entry.grid(row=2, column=1, padx=5, pady=15, sticky=W)
 
         # Student Gender:
         student_gender_lbl = Label(Left_3rd_frame, text="Gender:", font=("Cursive", 13))
-        student_gender_lbl.grid(row=2, column=2, padx=10, pady=15, sticky=W)
+        student_gender_lbl.grid(row=2, column=2, padx=5, pady=15, sticky=W)
         student_gender_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
-        student_gender_entry.grid(row=2, column=3, padx=10, pady=15, sticky=W)
+        student_gender_entry.grid(row=2, column=3, padx=5, pady=15, sticky=W)
 
         # Student DOB:
         student_dob_lbl = Label(Left_3rd_frame, text="Student DOB:", font=("Cursive", 13))
-        student_dob_lbl.grid(row=3, column=0, padx=10, pady=3, sticky=W)
+        student_dob_lbl.grid(row=3, column=0, padx=5, sticky=W)
         student_dob_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
-        student_dob_entry.grid(row=3, column=1, padx=10, pady=3, sticky=W)
+        student_dob_entry.grid(row=3, column=1, padx=5, sticky=W)
+
+        # Student Phone Number:
+        student_ph_lbl = Label(Left_3rd_frame, text="Mobile Number:", font=("Cursive", 13))
+        student_ph_lbl.grid(row=3, column=2, padx=5, pady=3, sticky=W)
+        student_ph_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
+        student_ph_entry.grid(row=3, column=3, padx=5, pady=3, sticky=W)
+
+        # Student Email Address:
+        student_email_lbl = Label(Left_3rd_frame, text="Student Email:", font=("Cursive", 13))
+        student_email_lbl.grid(row=5, column=0, padx=5, sticky=W)
+        student_email_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
+        student_email_entry.grid(row=5, column=1, padx=5, sticky=W)
+
+        # Student Address:
+        student_address_lbl = Label(Left_3rd_frame, text="Address:", font=("Cursive", 13))
+        student_address_lbl.grid(row=5, column=2, padx=5, pady=15, sticky=W)
+        student_address_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
+        student_address_entry.grid(row=5, column=3, padx=5, pady=15, sticky=W)
+
+        # Add radio Button for Taking Picture
+        radio_btn_1 = ttk.Radiobutton(Left_3rd_frame, text='Take Sample Photo', value=1)
+        radio_btn_1.grid(row=6, column=0, padx=5, pady=5, sticky=W)
+
+        radio_btn_2 = ttk.Radiobutton(Left_3rd_frame, text='Take Not Sample Photo', value=2)
+        radio_btn_2.grid(row=6, column=1, padx=5, pady=5, sticky=W)
 
         # Right label Frame
         Right_frame = LabelFrame(self.root, bd=2, relief=RIDGE, text="Student Records", font=("Times New Roman", 15))
