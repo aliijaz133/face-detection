@@ -32,7 +32,7 @@ class Student:
         self.root.bind("<Configure>", self.on_resize)
 
         # Left label Frame
-        Left_frame = LabelFrame(self.root, bd=2, relief=RIDGE, text="Student Details", font=("Times New Roman", 15))
+        Left_frame = LabelFrame(self.root, bd=2, relief=RIDGE, text="Student Details", font=("Times New Roman", 15, "bold"))
         Left_frame.place(x=50, y=100, width=660, height=580)
 
         Left_sec_frame = LabelFrame(self.root, bd=2, relief=RIDGE, text="Current Course Information", font=("Times New Roman", 15))
@@ -82,7 +82,7 @@ class Student:
 
         #Class Student Information
         Left_3rd_frame = LabelFrame(self.root, bd=2, relief=RIDGE, text="Class Student Information", font=("Times New Roman", 15))
-        Left_3rd_frame.place(x=70, y=270, width=620, height=250)
+        Left_3rd_frame.place(x=70, y=270, width=620, height=280)
         #Student ID:
         student_id_lbl = Label(Left_3rd_frame, text="Student Id:", font=("Cursive", 13))
         student_id_lbl.grid(row=0, column=0, padx=5, sticky=W)
@@ -138,9 +138,35 @@ class Student:
         radio_btn_2 = ttk.Radiobutton(Left_3rd_frame, text='Take Not Sample Photo', value=2)
         radio_btn_2.grid(row=6, column=1, padx=5, pady=5, sticky=W)
 
+        # Cancel Button
+        cancel_btn = Button(Left_3rd_frame, text="Cancel", font=("Times New Roman", 13), cursor="hand2", bg="LightBlue")
+        cancel_btn.grid(row=7, column=2, padx=5, pady=5, sticky=W)
+
+        # Submit Button
+        save_btn = Button(Left_3rd_frame, text="Save", font=("Times New Roman", 13), cursor='hand2', bg="LightGreen")
+        save_btn.grid(row=7, column=3, padx=5, pady=5, sticky=W)
+
         # Right label Frame
-        Right_frame = LabelFrame(self.root, bd=2, relief=RIDGE, text="Student Records", font=("Times New Roman", 15))
+        Right_frame = LabelFrame(self.root, bd=2, relief=RIDGE, text="Student Records", font=("Times New Roman", 15, "bold"))
         Right_frame.place(x=750, y=100, width=660, height=580)
+
+        search_lbl = LabelFrame(Right_frame, bd=2, relief=RIDGE, text="Search Student", font=("Times New Roman", 14))
+        search_lbl.place(x=0, y=10, width=660, height=100, )
+        search_lbl.configure(bg="white")
+
+        #Search Student By Name or Roll No
+        search_by = Label(search_lbl, text="Search Student By:", font=("Cursive", 13), bg="white")
+        search_by.grid(row=0, column=0, padx=10, sticky=W)
+
+        search_student = ttk.Combobox(search_lbl, font=("Times New Roman", 13), width=17, state='readonly')
+        search_student['value'] = ('Please select', 'Name', 'Roll No', 'Phone No')
+        search_student.current(0)
+        search_student.grid(row=0, column=1, padx=2, pady=10, sticky=W)
+
+        search_entry = Entry(search_lbl, bd=2, font=('Times New Roman', 13))
+        search_entry.grid(row=0, column=2, padx=10, pady=10, sticky=W)
+
+
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
         window_width = self.root.winfo_width()
