@@ -20,6 +20,11 @@ router.get('/main_file.js', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/main_file.js'));
 });
 
+// Serve the Image Show file
+router.get('/show_image.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/show_image.html'));
+});
+
 // Add more routes for additional CSS and JS files as needed
 
 app.use('/', router);

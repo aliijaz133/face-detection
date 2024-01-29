@@ -1,65 +1,65 @@
-from flask import Flask, render_template, request
-import os
-import cv2
-import numpy as np
-from PIL import Image, ImageDraw, ImageFont
+from tkinter import *
+from tkinter import ttk
+from PIL import Image, ImageTk
 
-app = Flask(__name__)
+class Face_Recognition_System:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Face Recognition System")
 
-def detect_faces(image_path):
-    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+        # Create a Canvas widget as the background
+        self.canvas = Canvas(self.root)
+        self.canvas.pack(fill=BOTH, expand=YES)
 
-    image = cv2.imread(image_path)
+        # Load and set the background image
+        self.bg_img_path = '/home/usamaumer/PycharmProjects/pythonProject/asset/images/background_image.png'
+        self.update_bg_image()
 
-    with open('./dataset/label/labels.txt', 'r') as file:
-        usernames = [line.strip() for line in file]
+        # Create and set up the first image label
+        img1 = Image.open('/home/usamaumer/PycharmProjects/pythonProject/asset/images/fav_icon.png')
+        img1 = img1.resize((100, 100), Image.BICUBIC)
+        self.photoImg1 = ImageTk.PhotoImage(img1)
+        f_lbl1 = Label(self.canvas, image=self.photoImg1, bg='white')
+        f_lbl1.grid(row=0, column=0, padx=10, pady=10)
 
-    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        # Create and set up the second image label
+        img2 = Image.open('/home/usamaumer/PycharmProjects/pythonProject/dataset/images/aliijaz.jpg')
+        img2 = img2.resize((100, 100), Image.BICUBIC)
+        self.photoImg2 = ImageTk.PhotoImage(img2)
+        f_lbl2 = Label(self.canvas, image=self.photoImg2, bg='white')
+        f_lbl2.grid(row=0, column=1, padx=10, pady=10)
 
-    faces = face_cascade.detectMultiScale(gray_image, scaleFactor=1.3, minNeighbors=5)
+        # Create a title label with a specified font
+        self.title_text = "Face Recognition System"
+        self.title_lbl = Label(text=self.title_text, font=("Times New Roman", 25, "bold"), bg="black", fg="white")
+        self.title_lbl.place(x=0, y=110, relwidth=1.0)  # Use relwidth to make the label span the full width
 
-    image_pil = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-    draw = ImageDraw.Draw(image_pil)
+        # Configure column weights to allow for responsive resizing
+        self.canvas.columnconfigure(0, weight=1)
+        self.canvas.columnconfigure(1, weight=1)
 
-    font = ImageFont.load_default()
+        # Bind the window resize event to update the background image and title label
+        self.root.bind("<Configure>", self.on_resize)
 
-    for idx, (x, y, w, h) in enumerate(faces):
-        cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 255), 2)
+    def update_bg_image(self, event=None):
+        # Resize and update the background image based on the window size
+        window_width = self.root.winfo_width()
+        window_height = self.root.winfo_height()
 
-        # Get the username for the current face
-        if idx < len(usernames):
-            username = usernames[idx]
-        else:
-            username = "Unknown"
+        bg_img = Image.open(self.bg_img_path)
+        bg_img = bg_img.resize((window_width, window_height), Image.BICUBIC)
+        self.bg_photo = ImageTk.PhotoImage(bg_img)
+        self.canvas.config(width=window_width, height=window_height)
+        self.canvas.create_image(0, 0, anchor=NW, image=self.bg_photo)
 
-        # Add label text directly from 'labels.txt'
-        label = f' {idx + 1}: {username}'
-        draw.text((x, y - 10), label, (255, 255, 255), font=font)
+    def on_resize(self, event):
+        # Update the title label width on window resize
+        window_width = self.root.winfo_width()
+        self.title_lbl.config(width=window_width)
+        self.update_bg_image()
 
-    annotated_image_path = f'./static/annotated_{os.path.basename(image_path)}'
-    cv2.imwrite(annotated_image_path, cv2.cvtColor(np.array(image_pil), cv2.COLOR_RGB2BGR))
-
-    return annotated_image_path
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-# Flask application
-@app.route('/show_image', methods=['POST'])
-def show_image():
-    enter_name = request.form['image_name']
-    images_folder = './database/images/'
-
-    # Check if the entered image file exists
-    image_path = os.path.join(images_folder, enter_name)
-    if not os.path.isfile(image_path):
-        return "Image not found!"
-
-    annotated_image_path = detect_faces(image_path)
-
-    # Specify the correct template file
-    return render_template('show_image.html', image_path=annotated_image_path)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    root = Tk()
+    obj = Face_Recognition_System(root)
+    root.geometry("800x150")  # Set an initial size for the window
+    root.mainloop()
