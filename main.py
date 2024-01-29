@@ -49,8 +49,12 @@ class Face_Recognition_System:
         b1 = Button(image=self.photoImg4, cursor="hand2")
         b1.place(x=50, y=200, width=220, height=220)
 
-        b1 = Button(text="Student Details", cursor="hand2")
-        b1.place(x=50, y=400, width=220, height=50)
+        b2 = Button(text="Student Details", bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
+        b2.place(x=50, y=400, width=220, height=50)
+
+        # first_entry = Entry(width=30)
+        # first_entry.place(x=50, y=250)
+        # first_entry.pack(padx=7, pady=7)
 
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
@@ -72,5 +76,5 @@ class Face_Recognition_System:
 if __name__ == "__main__":
     root = Tk()
     obj = Face_Recognition_System(root)
-    root.geometry("800x150")  # Set an initial size for the window
+    root.geometry("1280x720")  # Set an initial size for the window
     root.mainloop()
