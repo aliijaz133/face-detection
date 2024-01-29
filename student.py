@@ -166,6 +166,11 @@ class Student:
         search_entry = Entry(search_lbl, bd=2, font=('Times New Roman', 13))
         search_entry.grid(row=0, column=2, padx=10, pady=10, sticky=W)
 
+        # Table frame
+        table_frame = Frame(Right_frame, bd=2, relief=RIDGE, bg="white")
+        table_frame.place(x=4, y=120, width=650, height=300)
+        scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
+        scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
 
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
