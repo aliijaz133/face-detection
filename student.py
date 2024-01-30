@@ -172,6 +172,25 @@ class Student:
         scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
 
+        self.student_table = ttk.Treeview(table_frame, columns=("Name", "Roll No", "Gender", "DOB", "Phone No", "Email", "Address"), yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
+        scroll_x.pack(side=BOTTOM, fill=X)
+        scroll_y.pack(side=RIGHT, fill=Y)
+        scroll_x.config(command=self.student_table.xview)
+        scroll_y.config(command=self.student_table.yview)
+
+        self.student_table.heading("Name", text="Name")
+        self.student_table.heading("Roll No", text="Roll No")
+        self.student_table.heading("Gender", text="Gender")
+        self.student_table.heading("DOB", text="DOB")
+        self.student_table.heading("Phone No", text="Phone No")
+        self.student_table.heading("Email", text="Email")
+        self.student_table.heading("Address", text="Address")
+        scroll_x.config(command=self.student_table.xview)
+        scroll_y.config(command=self.student_table.yview)
+        self.student_table.pack(fill=BOTH, expand=1)
+        self.student_table.bind("<Double-Button-1>")
+        self.update_bg_image()
+
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
         window_width = self.root.winfo_width()
