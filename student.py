@@ -231,6 +231,11 @@ class Student:
 
 if __name__ == "__main__":
     root = Tk()
-    obj = Student(root)
+    app = Student(root)
     root.geometry("1440x1080")  # Set an initial size for the window
     root.mainloop()
+
+    # if __name__ == "__main__":
+    #     root = Tk()
+    #     obj = Student(root)
+    #     root.mainloop()
