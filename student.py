@@ -452,6 +452,6 @@ class Student:
 if __name__ == "__main__":
     root = Tk()
     app = Student(root)
-    root.geometry("1440x1080")  # Set an initial size for the window
+    root.geometry("1440x800")  # Set an initial size for the window
     root.bind("<Configure>", app.on_resize)
     root.mainloop()
