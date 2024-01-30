@@ -1,11 +1,34 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
+from tkinter import messagebox
 
 class Student:
     def __init__(self, root):
         self.root = root
         self.root.title("Face Recognition System")
+
+        #===========================Decalre Variables =================
+
+        self.var_dep = StringVar()
+        self.var_name = StringVar()
+        self.var_roll = StringVar()
+        self.var_phone = StringVar()
+        self.var_email = StringVar()
+        self.var_address = StringVar()
+        self.var_course = StringVar()
+        self.var_year = StringVar()
+        self.var_batch = StringVar()
+        self.var_date = StringVar()
+        self.var_time = StringVar()
+        self.var_status = StringVar()
+        self.var_image = StringVar()
+        self.var_photo = StringVar()
+        self.var_id = StringVar()
+        self.var_gender = StringVar()
+        self.var_radio1 = StringVar()
+
+        #===============================================================
 
         # Create a Canvas widget as the background
         self.canvas = Canvas(self.root)
@@ -18,6 +41,8 @@ class Student:
         # Load and set the background image
         self.bg_img_path = '/home/usamaumer/PycharmProjects/pythonProject/asset/images/background_image.png'
         self.update_bg_image()
+
+
 
         # Create a title label with a specified font
         self.title_text = "Student Management System"
@@ -41,8 +66,7 @@ class Student:
         #Add Department
         department_label = Label(Left_sec_frame, text="Department", font=("Cursive", 13))
         department_label.grid(row=0, column=0, padx=10, sticky=W)
-
-        dep_combo = ttk.Combobox(Left_sec_frame, font=("Times New Roman", 13), width=17, state='readonly')
+        dep_combo = ttk.Combobox(Left_sec_frame,textvariable= self.var_dep, font=("Times New Roman", 13), width=17, state='readonly')
         dep_combo['value'] = ('Please select', 'Computer Science', 'Management Science', 'Software Engineering', 'Media Science', 'Geo Physics')
         dep_combo.configure(background='white', foreground='black')
         dep_combo.current(0)
@@ -52,8 +76,7 @@ class Student:
         #Add Years
         department_year = Label(Left_sec_frame, text="Year", font=("Cursive", 13))
         department_year.grid(row=0, column=2, padx=10, sticky=W)
-
-        dep_year = ttk.Combobox(Left_sec_frame, font=("Times New Roman", 13), width=17, state='readonly')
+        dep_year = ttk.Combobox(Left_sec_frame, textvariable=self.var_year, font=("Times New Roman", 13), width=17, state='readonly')
         dep_year['value'] = ('Please select', 2019, 2020, 2021, 2022, 2023, 2024)
         dep_year.configure(background='white', foreground='black')
         dep_year.current(0)
@@ -62,8 +85,7 @@ class Student:
         #Add Semester
         department_sems = Label(Left_sec_frame, text="Semester", font=("Cursive", 13))
         department_sems.grid(row=2, column=0, padx=10, sticky=W)
-
-        dep_sems = ttk.Combobox(Left_sec_frame, font=("Times New Roman", 13), width=17, state='readonly')
+        dep_sems = ttk.Combobox(Left_sec_frame, textvariable=self.var_batch, font=("Times New Roman", 13), width=17, state='readonly')
         dep_sems['value'] = ('Please select', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th')
         dep_sems.configure(background='white', foreground='black')
         dep_sems.current(0)
@@ -72,8 +94,7 @@ class Student:
         #Add Course
         department_course = Label(Left_sec_frame, text="Courses", font=("Cursive", 13))
         department_course.grid(row=2, column=2, padx=10, sticky=W)
-
-        dep_course = ttk.Combobox(Left_sec_frame, font=("Times New Roman", 13), width=17, state='readonly')
+        dep_course = ttk.Combobox(Left_sec_frame, textvariable=self.var_course, font=("Times New Roman", 13), width=17, state='readonly')
         dep_course['value'] = ('Please select', 'PF', 'SE', 'OOP', 'DSA', 'Web-Tech', 'Python', 'Data Science')
         dep_course.configure(background='white', foreground='black')
         dep_course.current(0)
@@ -83,67 +104,72 @@ class Student:
         #Class Student Information
         Left_3rd_frame = LabelFrame(self.root, bd=2, relief=RIDGE, text="Class Student Information", font=("Times New Roman", 15))
         Left_3rd_frame.place(x=70, y=270, width=620, height=280)
+
         #Student ID:
         student_id_lbl = Label(Left_3rd_frame, text="Student Id:", font=("Cursive", 13))
         student_id_lbl.grid(row=0, column=0, padx=5, sticky=W)
-        student_id_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
+        student_id_entry = Entry(Left_3rd_frame, textvariable=self.var_id, font=("Times New Roman",), bd=2)
         student_id_entry.grid(row=0, column=1)
 
         #Student Name:
         student_name_lbl = Label(Left_3rd_frame, text="Student name:", font=("Cursive", 13))
         student_name_lbl.grid(row=0, column=2, padx=5, sticky=W)
-        student_name_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
+        student_name_entry = Entry(Left_3rd_frame, textvariable=self.var_name, font=("Times New Roman",), bd=2)
         student_name_entry.grid(row=0, column=3)
 
         #Student Roll No:
-        student_rollNo_lbl = Label(Left_3rd_frame, text="Student Roll No:", font=("Cursive", 13))
-        student_rollNo_lbl.grid(row=2, column=0, padx=5, pady=15, sticky=W)
-        student_rollNo_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
-        student_rollNo_entry.grid(row=2, column=1, padx=5, pady=15, sticky=W)
+        student_roll_lbl = Label(Left_3rd_frame, text="Student Roll No:", font=("Cursive", 13))
+        student_roll_lbl.grid(row=2, column=0, padx=5, pady=15, sticky=W)
+        student_roll_entry = Entry(Left_3rd_frame, textvariable=self.var_roll, font=("Times New Roman",), bd=2)
+        student_roll_entry.grid(row=2, column=1, padx=5, pady=15, sticky=W)
 
         # Student Gender:
         student_gender_lbl = Label(Left_3rd_frame, text="Gender:", font=("Cursive", 13))
         student_gender_lbl.grid(row=2, column=2, padx=5, pady=15, sticky=W)
-        student_gender_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
+        student_gender_entry = Entry(Left_3rd_frame, textvariable=self.var_gender, font=("Times New Roman",), bd=2)
         student_gender_entry.grid(row=2, column=3, padx=5, pady=15, sticky=W)
 
         # Student DOB:
         student_dob_lbl = Label(Left_3rd_frame, text="Student DOB:", font=("Cursive", 13))
         student_dob_lbl.grid(row=3, column=0, padx=5, sticky=W)
-        student_dob_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
+        student_dob_entry = Entry(Left_3rd_frame, textvariable=self.var_date, font=("Times New Roman",), bd=2)
         student_dob_entry.grid(row=3, column=1, padx=5, sticky=W)
 
         # Student Phone Number:
         student_ph_lbl = Label(Left_3rd_frame, text="Mobile Number:", font=("Cursive", 13))
         student_ph_lbl.grid(row=3, column=2, padx=5, pady=3, sticky=W)
-        student_ph_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
+        student_ph_entry = Entry(Left_3rd_frame, textvariable=self.var_phone, font=("Times New Roman",), bd=2)
         student_ph_entry.grid(row=3, column=3, padx=5, pady=3, sticky=W)
 
         # Student Email Address:
         student_email_lbl = Label(Left_3rd_frame, text="Student Email:", font=("Cursive", 13))
         student_email_lbl.grid(row=5, column=0, padx=5, sticky=W)
-        student_email_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
+        student_email_entry = Entry(Left_3rd_frame, textvariable=self.var_email, font=("Times New Roman",), bd=2)
         student_email_entry.grid(row=5, column=1, padx=5, sticky=W)
 
         # Student Address:
         student_address_lbl = Label(Left_3rd_frame, text="Address:", font=("Cursive", 13))
         student_address_lbl.grid(row=5, column=2, padx=5, pady=15, sticky=W)
-        student_address_entry = Entry(Left_3rd_frame, font=("Times New Roman",), bd=2)
+        student_address_entry = Entry(Left_3rd_frame, textvariable=self.var_address, font=("Times New Roman",), bd=2)
         student_address_entry.grid(row=5, column=3, padx=5, pady=15, sticky=W)
 
         # Add radio Button for Taking Picture
-        radio_btn_1 = ttk.Radiobutton(Left_3rd_frame, text='Take Sample Photo', value=1)
+        radio_btn_1 = ttk.Radiobutton(Left_3rd_frame, textvariable=self.var_radio1, text='Take Sample Photo', value=1)
         radio_btn_1.grid(row=6, column=0, padx=5, pady=5, sticky=W)
 
-        radio_btn_2 = ttk.Radiobutton(Left_3rd_frame, text='Take Not Sample Photo', value=2)
+        radio_btn_2 = ttk.Radiobutton(Left_3rd_frame, textvariable=self.var_radio1, text='Take Not Sample Photo', value=2)
         radio_btn_2.grid(row=6, column=1, padx=5, pady=5, sticky=W)
 
         # Cancel Button
         cancel_btn = Button(Left_3rd_frame, text="Cancel", font=("Times New Roman", 13), cursor="hand2", bg="LightBlue")
         cancel_btn.grid(row=7, column=2, padx=5, pady=5, sticky=W)
 
+        def add_data(self):
+            if self.var_dep.get() == "Please select" or self.var_name.get() == "" or self.var_id.get() == "" or self.var_roll.get() == "":
+                messagebox.showerror("Error", "Please fill all the fields")
+
         # Submit Button
-        save_btn = Button(Left_3rd_frame, text="Save", font=("Times New Roman", 13), cursor='hand2', bg="LightGreen")
+        save_btn = Button(Left_3rd_frame, text="Save", command=self.add_data, font=("Times New Roman", 13), cursor='hand2', bg="LightGreen")
         save_btn.grid(row=7, column=3, padx=5, pady=5, sticky=W)
 
         # Right label Frame
@@ -172,31 +198,12 @@ class Student:
         scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
 
-        self.student_table = ttk.Treeview(table_frame, columns=("ID", "Name", "Roll No", "Gender", "DOB", "Phone No", "Email", "Address"), yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
+        self.student_table = ttk.Treeview(table_frame, columns=(
+        "ID", "Name", "Roll No", "Gender", "DOB", "Phone No", "Email", "Address"), yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
         scroll_x.config(command=self.student_table.xview)
         scroll_y.config(command=self.student_table.yview)
-
-
-        #Add Some Demo Data for Show Table Frame
-        data = [
-            ("1", "Ali Ijaz", "1214", "Male", "2000-01-01", "03051172111", "ali@example.com", "123 Main St"),
-            ("2", "Jane Smith", "1002", "Female", "1992-03-15", "9876543210", "jane@example.com", "456 Oak St"),
-            ("3", "John Doe", "1003", "Male", "1993-03-15", "9876543211", "john@example.com", "789 Main St"),
-            ("4", "Aisha Khan", "1004", "Female", "1995-05-20", "1234567890", "aisha@example.com", "567 Pine St"),
-            ("5", "Ahmed Ali", "1005", "Male", "1990-02-10", "3456789012", "ahmed@example.com", "890 Maple St"),
-            ("6", "Sara Ahmed", "1006", "Female", "1997-08-05", "5678901234", "sara@example.com", "234 Cedar St"),
-            ("7", "Faisal Khan", "1007", "Male", "1988-11-30", "8765432109", "faisal@example.com", "678 Birch St"),
-            ("8", "Zainab Malik", "1008", "Female", "1991-07-12", "7890123456", "zainab@example.com", "901 Elm St"),
-            ("9", "Imran Ahmed", "1009", "Male", "1985-04-25", "2109876543", "imran@example.com", "345 Redwood St"),
-            ("10", "Maryam Khan", "1010", "Female", "1998-06-18", "4321098765", "maryam@example.com", "678 Juniper St"),
-            ("11", "Khalid Mahmood", "1011", "Male", "1980-09-08", "3210987654", "khalid@example.com", "123 Pine St"),
-            ("12", "Sophia Ali", "1012", "Female", "1996-12-02", "6543210987", "sophia@example.com", "456 Cedar St"),
-            ("13", "Yusuf Khan", "1013", "Male", "1983-10-15", "7890123456", "yusuf@example.com", "789 Oak St"),
-            ("14", "Nadia Ahmed", "1014", "Female", "1989-04-05", "8901234567", "nadia@example.com", "234 Maple St"),
-            # Add more rows as needed
-        ]
 
         self.student_table.heading("ID", text="ID")
         self.student_table.heading("Name", text="Name")
@@ -206,11 +213,10 @@ class Student:
         self.student_table.heading("Phone No", text="Phone No")
         self.student_table.heading("Email", text="Email")
         self.student_table.heading("Address", text="Address")
-        self.student_table.pack(fill=BOTH, expand=1)
 
-
-        for row in data:
-            self.student_table.insert("", "end", values=row)
+        # Add Department column and set heading
+        self.student_table["columns"] += ("Select Department",)
+        self.student_table.heading("Select Department", text="Select Department")
 
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
@@ -233,9 +239,5 @@ if __name__ == "__main__":
     root = Tk()
     app = Student(root)
     root.geometry("1440x1080")  # Set an initial size for the window
+    root.bind("<Configure>", app.on_resize)
     root.mainloop()
-
-    # if __name__ == "__main__":
-    #     root = Tk()
-    #     obj = Student(root)
-    #     root.mainloop()

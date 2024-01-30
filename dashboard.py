@@ -2,9 +2,11 @@ from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
 class Face_Recognition_System(ttk.Frame):
-    def __init__(self, master=None):  # Change self.root to master
+    def __init__(self, master=None):
+        self.root = root
+        self.root.title("Face Recognition System")
         super().__init__(master)
-        self.master = master  # Assign master to self.master
+        self.master = master
         self.create_widgets()
 
         # Create a Canvas widget as the background
@@ -55,6 +57,7 @@ class Face_Recognition_System(ttk.Frame):
         b2 = Button(text="Student Details", command=self.student_details, bg="blue", font=("Arival", 14), fg="white",
                     cursor="hand2")
         b2.place(x=300, y=418, width=220, height=50)
+
 
     def student_details(self):
         from student import Student
