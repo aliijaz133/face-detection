@@ -172,12 +172,33 @@ class Student:
         scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
 
-        self.student_table = ttk.Treeview(table_frame, columns=("Name", "Roll No", "Gender", "DOB", "Phone No", "Email", "Address"), yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
+        self.student_table = ttk.Treeview(table_frame, columns=("ID", "Name", "Roll No", "Gender", "DOB", "Phone No", "Email", "Address"), yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
         scroll_x.config(command=self.student_table.xview)
         scroll_y.config(command=self.student_table.yview)
 
+
+        #Add Some Demo Data for Show Table Frame
+        data = [
+            ("1", "Ali Ijaz", "1214", "Male", "2000-01-01", "03051172111", "ali@example.com", "123 Main St"),
+            ("2", "Jane Smith", "1002", "Female", "1992-03-15", "9876543210", "jane@example.com", "456 Oak St"),
+            ("3", "John Doe", "1003", "Male", "1993-03-15", "9876543211", "john@example.com", "789 Main St"),
+            ("4", "Aisha Khan", "1004", "Female", "1995-05-20", "1234567890", "aisha@example.com", "567 Pine St"),
+            ("5", "Ahmed Ali", "1005", "Male", "1990-02-10", "3456789012", "ahmed@example.com", "890 Maple St"),
+            ("6", "Sara Ahmed", "1006", "Female", "1997-08-05", "5678901234", "sara@example.com", "234 Cedar St"),
+            ("7", "Faisal Khan", "1007", "Male", "1988-11-30", "8765432109", "faisal@example.com", "678 Birch St"),
+            ("8", "Zainab Malik", "1008", "Female", "1991-07-12", "7890123456", "zainab@example.com", "901 Elm St"),
+            ("9", "Imran Ahmed", "1009", "Male", "1985-04-25", "2109876543", "imran@example.com", "345 Redwood St"),
+            ("10", "Maryam Khan", "1010", "Female", "1998-06-18", "4321098765", "maryam@example.com", "678 Juniper St"),
+            ("11", "Khalid Mahmood", "1011", "Male", "1980-09-08", "3210987654", "khalid@example.com", "123 Pine St"),
+            ("12", "Sophia Ali", "1012", "Female", "1996-12-02", "6543210987", "sophia@example.com", "456 Cedar St"),
+            ("13", "Yusuf Khan", "1013", "Male", "1983-10-15", "7890123456", "yusuf@example.com", "789 Oak St"),
+            ("14", "Nadia Ahmed", "1014", "Female", "1989-04-05", "8901234567", "nadia@example.com", "234 Maple St"),
+            # Add more rows as needed
+        ]
+
+        self.student_table.heading("ID", text="ID")
         self.student_table.heading("Name", text="Name")
         self.student_table.heading("Roll No", text="Roll No")
         self.student_table.heading("Gender", text="Gender")
@@ -185,11 +206,11 @@ class Student:
         self.student_table.heading("Phone No", text="Phone No")
         self.student_table.heading("Email", text="Email")
         self.student_table.heading("Address", text="Address")
-        scroll_x.config(command=self.student_table.xview)
-        scroll_y.config(command=self.student_table.yview)
         self.student_table.pack(fill=BOTH, expand=1)
-        self.student_table.bind("<Double-Button-1>")
-        self.update_bg_image()
+
+
+        for row in data:
+            self.student_table.insert("", "end", values=row)
 
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
