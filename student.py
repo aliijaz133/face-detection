@@ -340,28 +340,13 @@ class Student:
         search_entry = Entry(search_lbl, bd=2, font=("Times New Roman", 13))
         search_entry.grid(row=0, column=2, padx=10, pady=10, sticky=W)
 
-        # Table frame
+         # Table frame
         table_frame = Frame(Right_frame, bd=2, relief=RIDGE, bg="white")
         table_frame.place(x=4, y=120, width=650, height=300)
         scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
 
-        self.student_table = ttk.Treeview(
-            table_frame,
-            columns=(
-                "ID",
-                "Name",
-                "Roll No",
-                "Gender",
-                "DOB",
-                "Phone No",
-                "Email",
-                "Address",
-                "Select Department",
-            ),
-            yscrollcommand=scroll_y.set,
-            xscrollcommand=scroll_x.set,
-        )
+        self.student_table = ttk.Treeview(table_frame, columns=("ID", "Name", "Roll No", "Gender", "DOB", "Phone No", "Email", "Address"), yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
         scroll_x.config(command=self.student_table.xview)
@@ -375,17 +360,18 @@ class Student:
         self.student_table.heading("Phone No", text="Phone No")
         self.student_table.heading("Email", text="Email")
         self.student_table.heading("Address", text="Address")
-        self.student_table.heading("Select Department", text="Select Department")
+        scroll_x.config(command=self.student_table.xview)
+        scroll_y.config(command=self.student_table.yview)
+        self.student_table.pack(fill=BOTH, expand=1)
 
-        # Call the show_data method to populate the table initially
         self.show_data()
 
     def show_data(self):
-        # Clear existing items in the Treeview
+
         for item in self.student_table.get_children():
             self.student_table.delete(item)
 
-        # Define cursor here
+
         cursor = self.collection.find()
 
         for record in cursor:
