@@ -1,13 +1,12 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
-class Face_Recognition_System(ttk.Frame):
-    def __init__(self, master=None):
+
+
+class Face_Recognition_System:
+    def __init__(self, root):
         self.root = root
         self.root.title("Face Recognition System")
-        super().__init__(master)
-        self.master = master
-        self.create_widgets()
 
         # Create a Canvas widget as the background
         self.canvas = Canvas(self.root)
@@ -51,24 +50,21 @@ class Face_Recognition_System(ttk.Frame):
         img4 = Image.open(r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/detail_icon.png")
         img4 = img4.resize((200, 200), Image.BICUBIC)
         self.photoImg4 = ImageTk.PhotoImage(img4)
-        b1 = Button(image=self.photoImg4, cursor="hand2", command=self.student_details)
+
+        b1 = Button(image=self.photoImg4, cursor="hand2")
         b1.place(x=300, y=200, width=220, height=220)
 
-        b2 = Button(text="Student Details", command=self.student_details, bg="blue", font=("Arival", 14), fg="white",
-                    cursor="hand2")
+        b2 = Button(text="Student Details", command=self.student_details, bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b2.place(x=300, y=418, width=220, height=50)
-
-
-    def student_details(self):
-        from student import Student
-        self.master.switch_frame(Student)
 
         # Face Detector
         img5 = Image.open(r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/face_detector.png")
         img5 = img5.resize((200, 200), Image.BICUBIC)
         self.photoImg5 = ImageTk.PhotoImage(img5)
+
         b3 = Button(image=self.photoImg5, cursor="hand2")
         b3.place(x=550, y=200, width=220, height=220)
+
         b3 = Button(text="Face Detector", bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b3.place(x=550, y=418, width=220, height=50)
 
@@ -76,8 +72,10 @@ class Face_Recognition_System(ttk.Frame):
         img6 = Image.open(r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/attendance.jpg")
         img6 = img6.resize((200, 200), Image.BICUBIC)
         self.photoImg6 = ImageTk.PhotoImage(img6)
+
         b4 = Button(image=self.photoImg6, cursor="hand2")
         b4.place(x=800, y=200, width=220, height=220)
+
         b5 = Button(text="Attendance", bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b5.place(x=800, y=418, width=220, height=50)
 
@@ -85,8 +83,10 @@ class Face_Recognition_System(ttk.Frame):
         img7 = Image.open(r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/help-desk.png")
         img7 = img7.resize((200, 200), Image.BICUBIC)
         self.photoImg7 = ImageTk.PhotoImage(img7)
+
         b6 = Button(image=self.photoImg7, cursor="hand2")
         b6.place(x=1050, y=200, width=220, height=220)
+
         b7 = Button(text="Help Desk", bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b7.place(x=1050, y=418, width=220, height=50)
 
@@ -96,8 +96,10 @@ class Face_Recognition_System(ttk.Frame):
         img8 = Image.open(r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/train_data.jpg")
         img8 = img8.resize((200, 200), Image.BICUBIC)
         self.photoImg8 = ImageTk.PhotoImage(img8)
+
         b8 = Button(image=self.photoImg8, cursor="hand2")
         b8.place(x=300, y=500, width=220, height=220)
+
         b9 = Button(text="Train Data", bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b9.place(x=300, y=718, width=220, height=50)
 
@@ -105,8 +107,10 @@ class Face_Recognition_System(ttk.Frame):
         img9 = Image.open(r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/photos.png")
         img9 = img9.resize((200, 200), Image.BICUBIC)
         self.photoImg9 = ImageTk.PhotoImage(img9)
+
         b10 = Button(image=self.photoImg9, cursor="hand2")
         b10.place(x=550, y=500, width=220, height=220)
+
         b11 = Button(text="Photos", bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b11.place(x=550, y=718, width=220, height=50)
 
@@ -114,8 +118,10 @@ class Face_Recognition_System(ttk.Frame):
         img10 = Image.open(r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/developer_image.png")
         img10 = img10.resize((200, 200), Image.BICUBIC)
         self.photoImg10 = ImageTk.PhotoImage(img10)
+
         b12 = Button(image=self.photoImg10, cursor="hand2")
         b12.place(x=800, y=500, width=220, height=220)
+
         b13 = Button(text="Developers", bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b13.place(x=800, y=718, width=220, height=50)
 
@@ -123,17 +129,16 @@ class Face_Recognition_System(ttk.Frame):
         img11 = Image.open(r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/exit_image.png")
         img11 = img11.resize((200, 200), Image.BICUBIC)
         self.photoImg11 = ImageTk.PhotoImage(img11)
+
         b14 = Button(image=self.photoImg11, cursor="hand2")
         b14.place(x=1050, y=500, width=220, height=220)
+
         b15 = Button(text="Exit", bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b15.place(x=1050, y=718, width=220, height=50)
 
-        #========================= FUNCTIONS =========================
-
-        # def student_details(self):
-        #     self.new_window = Toplevel(self.root)
-        #     self.app = Student(self.new_window)
-        #======================== END FUNCTIONS ======================
+        # first_entry = Entry(width=30)
+        # first_entry.place(x=50, y=250)
+        # first_entry.pack(padx=7, pady=7)
 
 
     def update_bg_image(self, event=None):
@@ -153,9 +158,8 @@ class Face_Recognition_System(ttk.Frame):
         self.title_lbl.config(width=window_width)
         self.update_bg_image()
 
-
 if __name__ == "__main__":
     root = Tk()
-    app = Face_Recognition_System(root)
+    obj = Face_Recognition_System(root)
     root.geometry("1440x1080")  # Set an initial size for the window
     root.mainloop()
