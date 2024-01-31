@@ -364,6 +364,8 @@ class Student:
         scroll_y.config(command=self.student_table.yview)
         self.student_table.pack(fill=BOTH, expand=1)
 
+        self.student_table.bind("<ButtonRelease-1>", self.get_selected_data)
+
         self.show_data()
 
     def show_data(self):
@@ -431,6 +433,20 @@ class Student:
             self.var_course.set("Please select")
             self.var_id.set("")
             self.var_radio1.set(None)
+
+    def get_selected_data(self, event):
+        selected_item = self.student_table.selection()
+        if selected_item:
+            data = self.student_table.item(selected_item)["values"]
+             # Populate the form fields with the selected data
+            self.var_id.set(data[0])
+            self.var_name.set(data[1])
+            self.var_roll.set(data[2])
+            self.var_gender.set(data[3])
+            self.var_date.set(data[4])
+            self.var_phone.set(data[5])
+            self.var_email.set(data[6])
+            self.var_address.set(data[7])
 
     def update_bg_image(self, event=None):
         window_width = self.root.winfo_width()
