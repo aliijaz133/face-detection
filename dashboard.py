@@ -84,10 +84,10 @@ class Face_Recognition_System:
         img7 = img7.resize((200, 200), Image.BICUBIC)
         self.photoImg7 = ImageTk.PhotoImage(img7)
 
-        b6 = Button(image=self.photoImg7, cursor="hand2")
+        b6 = Button(image=self.photoImg7, command=self.open_developer, cursor="hand2")
         b6.place(x=1050, y=200, width=220, height=220)
 
-        b7 = Button(text="Help Desk", bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
+        b7 = Button(text="Help Desk", command=self.open_developer, bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b7.place(x=1050, y=418, width=220, height=50)
 
         #BELOW IMAGE CONTAINER
@@ -119,10 +119,10 @@ class Face_Recognition_System:
         img10 = img10.resize((200, 200), Image.BICUBIC)
         self.photoImg10 = ImageTk.PhotoImage(img10)
 
-        b12 = Button(image=self.photoImg10, cursor="hand2")
+        b12 = Button(image=self.photoImg10, command=self.open_developer, cursor="hand2")
         b12.place(x=800, y=500, width=220, height=220)
 
-        b13 = Button(text="Developers", bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
+        b13 = Button(text="Developers", command=self.open_developer, bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b13.place(x=800, y=718, width=220, height=50)
 
         #Exiting
@@ -146,6 +146,20 @@ class Face_Recognition_System:
         from faceDetection import Face_Detector
         face_detector_window = Toplevel(self.root)
         face_detector_frame = Face_Detector(face_detector_window)
+        face_detector_window.geometry("920x320")
+        face_detector_window.mainloop()
+    
+    def open_developer(self):
+        from helpdesk import Help_Desk
+        face_detector_window = Toplevel(self.root)
+        face_detector_frame = Help_Desk(face_detector_window)
+        face_detector_window.geometry("920x320")
+        face_detector_window.mainloop()
+    
+    def open_helpdesk(self):
+        from developer import Developer
+        face_detector_window = Toplevel(self.root)
+        face_detector_frame = Developer(face_detector_window)
         face_detector_window.geometry("920x320")
         face_detector_window.mainloop()
 
