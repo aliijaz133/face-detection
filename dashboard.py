@@ -146,7 +146,7 @@ class Face_Recognition_System:
         from faceDetection import Face_Detector
         face_detector_window = Toplevel(self.root)
         face_detector_frame = Face_Detector(face_detector_window)
-        face_detector_window.geometry("1440x1080")
+        face_detector_window.geometry("920x320")
         face_detector_window.mainloop()
 
     def update_bg_image(self, event=None):

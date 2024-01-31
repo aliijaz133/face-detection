@@ -3,8 +3,8 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 from tkinter import messagebox
 from tkinter import filedialog
-import pymongo
-
+import cv2
+import numpy as np
 
 class Face_Detector:
     def __init__(self, root):
@@ -18,7 +18,7 @@ class Face_Detector:
         scrollbar = Scrollbar(self.root, orient=VERTICAL, command=self.canvas.yview)
         scrollbar.pack(side=RIGHT, fill=Y)
 
-        # Load and set the background image
+        # Background image
         self.bg_img_path = "/home/usamaumer/PycharmProjects/pythonProject/asset/images/background_image.png"
         self.update_bg_image()
 
@@ -39,6 +39,27 @@ class Face_Detector:
         # Bind the window resize event to update the background image and title label
         self.root.bind("<Configure>", self.on_resize)
 
+        # Start live video face detection
+        self.video_capture = cv2.VideoCapture(0)
+        self.show_video()
+
+    def show_video(self):
+        ret, frame = self.video_capture.read()
+        if ret:
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            frame = Image.fromarray(frame)
+            photo = ImageTk.PhotoImage(frame)
+
+            # Update canvas with the new frame
+            self.canvas.config(width=photo.width(), height=photo.height())
+            self.canvas.create_image(0, 0, anchor=NW, image=photo)
+
+            self.root.after(10, self.show_video)
+
+        else:
+            # If there is an issue with the camera, display an error message
+            messagebox.showerror("Error", "Could not access the camera.")
+            self.root.destroy()
 
     def update_bg_image(self, event=None):
         window_width = self.root.winfo_width()
@@ -56,10 +77,14 @@ class Face_Detector:
         self.title_lbl.config(width=window_width)
         self.update_bg_image()
 
+    def __del__(self):
+        # Release the video capture when the window is closed
+        if hasattr(self, 'video_capture'):
+            self.video_capture.release()
 
 if __name__ == "__main__":
     root = Tk()
     app = Face_Detector(root)
-    root.geometry("1440x800")
+    root.geometry("920x320")
     root.bind("<Configure>", app.on_resize)
     root.mainloop()
