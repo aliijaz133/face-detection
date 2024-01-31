@@ -337,7 +337,7 @@ class Student:
         add_photo_btn = Button(
             Left_3rd_frame,
             text="Add Photo",
-            command=self.add_photo_data,
+            command=self.add_photo_during_update,
             font=("Times New Roman", 13),
             cursor="hand2",
             bg="Blue",
@@ -608,30 +608,21 @@ class Student:
     # =========================================================================
     # ============================= ADD PHOTO =================================
     # =========================================================================
-    def add_photo_data(self):
-        selected_item = self.student_table.selection()
-        if not selected_item:
-            messagebox.showerror("Error", "Please select a record to add photo", parent=self.root)
-            return
-
-        # Get the values from the selected row
-        data = self.student_table.item(selected_item)["values"]
-
-        # Prompt the user to select a photo
+    def add_photo_during_update(self):
         file_path = filedialog.askopenfilename(filetypes=[("Image files", "*")])
 
         if file_path:
             # Update the record in the database with the file path
             update_result = self.collection.update_one(
-                {"_id": data[0]},
+                {"_id": ObjectId(self.var_id.get())},
                 {"$set": {"photo": file_path}}
             )
 
             if update_result.modified_count > 0:
-                messagebox.showinfo("Success", "Photo added successfully", parent=self.root)
+                messagebox.showinfo("Success", "Photo added successfully during update", parent=self.root)
                 self.show_data()  # Refresh the table
             else:
-                messagebox.showerror("Error", "Failed to add photo", parent=self.root)
+                messagebox.showerror("Error", "Failed to add photo during update", parent=self.root)
         
     # =========================================================================
     # =========================== EVENT HANDLERS ==============================
