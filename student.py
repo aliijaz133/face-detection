@@ -62,6 +62,14 @@ class Student:
         # Bind the window resize event to update the background image and title label
         self.root.bind("<Configure>", self.on_resize)
 
+        # Student Detail Button
+        img4 = Image.open(r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/back-btn.png")
+        img4 = img4.resize((100, 40), Image.BICUBIC)
+        self.photoImg4 = ImageTk.PhotoImage(img4)
+
+        b1 = Button(image=self.photoImg4, command=self.dashboard, cursor="hand2")
+        b1.place(x=50, y=50, width=100, height=40)
+
         # Left label Frame
         Left_frame = LabelFrame(
             self.root,
@@ -403,6 +411,14 @@ class Student:
         self.student_table.bind("<ButtonRelease-1>", self.get_selected_data)
 
         self.show_data()
+
+    #------------------------------------------------------------------------------------------------------------------------
+    def dashboard(self):
+        from dashboard import Face_Recognition_System
+        dashboard_window = Toplevel(self.root)
+        dashboard_frame = Face_Recognition_System(dashboard_window)
+        dashboard_window.geometry("1440x1080")
+        dashboard_window.mainloop()
 
     # =========================================================================
     # ========================== FETCH DATA FROM SERVER =======================
