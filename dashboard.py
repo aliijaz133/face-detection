@@ -62,10 +62,10 @@ class Face_Recognition_System:
         img5 = img5.resize((200, 200), Image.BICUBIC)
         self.photoImg5 = ImageTk.PhotoImage(img5)
 
-        b3 = Button(image=self.photoImg5, cursor="hand2")
+        b3 = Button(image=self.photoImg5, command=self.open_face_detector, cursor="hand2")
         b3.place(x=550, y=200, width=220, height=220)
 
-        b3 = Button(text="Face Detector", bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
+        b3 = Button(text="Face Detector", command=self.open_face_detector, bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b3.place(x=550, y=418, width=220, height=50)
 
         # Show Attendance
@@ -141,6 +141,13 @@ class Face_Recognition_System:
         student_frame = Student(student_window)
         student_window.geometry("1440x1080")
         student_window.mainloop()
+
+    def open_face_detector(self):
+        from faceDetection import Face_Detector
+        face_detector_window = Toplevel(self.root)
+        face_detector_frame = Face_Detector(face_detector_window)
+        face_detector_window.geometry("1440x1080")
+        face_detector_window.mainloop()
 
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
