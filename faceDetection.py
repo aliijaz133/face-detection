@@ -6,6 +6,7 @@ from tkinter import filedialog
 import cv2
 import numpy as np
 
+
 class Face_Detector:
     def __init__(self, root):
         self.root = root
@@ -79,8 +80,9 @@ class Face_Detector:
 
     def __del__(self):
         # Release the video capture when the window is closed
-        if hasattr(self, 'video_capture'):
+        if hasattr(self, "video_capture"):
             self.video_capture.release()
+
 
 if __name__ == "__main__":
     root = Tk()

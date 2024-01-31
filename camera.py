@@ -3,6 +3,7 @@ import sys
 import tkinter as tk
 from tkinter import Canvas, PhotoImage
 
+
 class FaceDetectionApp:
     def __init__(self, master, cascPath):
         self.master = master
@@ -26,11 +27,11 @@ class FaceDetectionApp:
             scaleFactor=1.1,
             minNeighbors=5,
             minSize=(30, 30),
-            flags=cv2.CASCADE_SCALE_IMAGE
+            flags=cv2.CASCADE_SCALE_IMAGE,
         )
 
-        for (x, y, w, h) in faces:
-            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+        for x, y, w, h in faces:
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
         self.photo = self.convert_to_tk_image(frame)
         self.canvas.create_image(0, 0, anchor=tk.NW, image=self.photo)

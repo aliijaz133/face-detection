@@ -65,7 +65,9 @@ class Student:
         self.root.bind("<Configure>", self.on_resize)
 
         # Student Detail Button
-        img4 = Image.open(r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/back-btn.png")
+        img4 = Image.open(
+            r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/back-btn.png"
+        )
         img4 = img4.resize((100, 40), Image.BICUBIC)
         self.photoImg4 = ImageTk.PhotoImage(img4)
 
@@ -341,7 +343,7 @@ class Student:
             font=("Times New Roman", 13),
             cursor="hand2",
             bg="Blue",
-            fg="white"
+            fg="white",
         )
         add_photo_btn.grid(row=8, column=0, padx=5, pady=5, sticky=W)
 
@@ -386,13 +388,27 @@ class Student:
         search_entry = Entry(search_lbl, bd=2, font=("Times New Roman", 13))
         search_entry.grid(row=0, column=2, padx=10, pady=10, sticky=W)
 
-         # Table frame
+        # Table frame
         table_frame = Frame(Right_frame, bd=2, relief=RIDGE, bg="white")
         table_frame.place(x=4, y=120, width=650, height=300)
         scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
 
-        self.student_table = ttk.Treeview(table_frame, columns=("ID", "Name", "Roll No", "Gender", "DOB", "Phone No", "Email", "Address"), yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
+        self.student_table = ttk.Treeview(
+            table_frame,
+            columns=(
+                "ID",
+                "Name",
+                "Roll No",
+                "Gender",
+                "DOB",
+                "Phone No",
+                "Email",
+                "Address",
+            ),
+            yscrollcommand=scroll_y.set,
+            xscrollcommand=scroll_x.set,
+        )
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
         scroll_x.config(command=self.student_table.xview)
@@ -414,9 +430,10 @@ class Student:
 
         self.show_data()
 
-    #------------------------------------------------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------------------------------------------------
     def dashboard(self):
         from dashboard import Face_Recognition_System
+
         dashboard_window = Toplevel(self.root)
         dashboard_frame = Face_Recognition_System(dashboard_window)
         dashboard_window.geometry("1440x1080")
@@ -426,10 +443,8 @@ class Student:
     # ========================== FETCH DATA FROM SERVER =======================
     # =========================================================================
     def show_data(self):
-
         for item in self.student_table.get_children():
             self.student_table.delete(item)
-
 
         cursor = self.collection.find()
 
@@ -447,15 +462,26 @@ class Student:
                     record["email"],
                     record["address"],
                     record.get("department", ""),
-                )
+                ),
             )
 
     # =========================================================================
     # ========================== SAVE DATA IN SERVER ==========================
     # =========================================================================
-            
+
     def add_data(self):
-        if self.var_name.get() == "" or self.var_roll.get() == "" or self.var_gender.get() == "" or self.var_date.get() == self.var_phone.get() or self.var_email.get() == "" or self.var_address.get() == "" or self.var_year.get() == "" or self.var_batch.get() == "" or self.var_course.get() == "" or self.var_id.get() == "":
+        if (
+            self.var_name.get() == ""
+            or self.var_roll.get() == ""
+            or self.var_gender.get() == ""
+            or self.var_date.get() == self.var_phone.get()
+            or self.var_email.get() == ""
+            or self.var_address.get() == ""
+            or self.var_year.get() == ""
+            or self.var_batch.get() == ""
+            or self.var_course.get() == ""
+            or self.var_id.get() == ""
+        ):
             messagebox.showerror(
                 "Error", "Please fill all the fields", parent=self.root
             )
@@ -499,7 +525,7 @@ class Student:
         selected_item = self.student_table.selection()
         if selected_item:
             data = self.student_table.item(selected_item)["values"]
-             # Populate the form fields with the selected data
+            # Populate the form fields with the selected data
             self.var_id.set(data[0])
             self.var_name.set(data[1])
             self.var_roll.set(data[2])
@@ -528,25 +554,27 @@ class Student:
         self.var_batch.set("Please select")
         self.var_course.set("Please select")
         self.var_id.set("")
-        self.var_radio1.set(None)        
-    
+        self.var_radio1.set(None)
+
     # =========================================================================
     # ========================== UPDATE DATA IN SERVER ========================
     # =========================================================================
-    
+
     def update_data(self):
         selected_item = self.student_table.selection()
         if not selected_item:
-            messagebox.showerror("Error", "Please select a record to update", parent=self.root)
+            messagebox.showerror(
+                "Error", "Please select a record to update", parent=self.root
+            )
             return
-
 
         data_id = ObjectId(self.var_id.get())
         data = self.student_table.item(selected_item)["values"]
 
-
         if any(value == "" for value in data):
-            messagebox.showerror("Error", "Please fill all the fields", parent=self.root)
+            messagebox.showerror(
+                "Error", "Please fill all the fields", parent=self.root
+            )
             return
 
         updated_data = {
@@ -563,26 +591,28 @@ class Student:
             "course": self.var_course.get(),
             "id": self.var_id.get(),
         }
-        
+
         update_result = self.collection.update_one(
-            {"_id": data_id},
-            {"$set": updated_data}
+            {"_id": data_id}, {"$set": updated_data}
         )
-    
+
         if update_result.modified_count > 0:
-            messagebox.showinfo("Success", "Record updated successfully", parent=self.root)
+            messagebox.showinfo(
+                "Success", "Record updated successfully", parent=self.root
+            )
             self.show_data()
         else:
             messagebox.showerror("Error", "Failed to update record", parent=self.root)
-        
-            
+
     # =========================================================================
     # ========================== DELETE DATA FROM SERVER ======================
     # =========================================================================
     def delete_data(self):
         selected_item = self.student_table.selection()
         if not selected_item:
-            messagebox.showerror("Error", "Please select a record to delete", parent=self.root)
+            messagebox.showerror(
+                "Error", "Please select a record to delete", parent=self.root
+            )
             return
 
         # Convert the ID to ObjectId
@@ -592,7 +622,7 @@ class Student:
         confirmation = messagebox.askyesno(
             "Confirmation",
             f"Do you want to delete the record of {self.var_name.get()}?",
-            parent=self.root
+            parent=self.root,
         )
 
         if confirmation:
@@ -600,10 +630,14 @@ class Student:
             delete_result = self.collection.delete_one({"_id": data_id})
 
             if delete_result.deleted_count > 0:
-                messagebox.showinfo("Success", "Record deleted successfully", parent=self.root)
+                messagebox.showinfo(
+                    "Success", "Record deleted successfully", parent=self.root
+                )
                 self.show_data()  # Refresh the table
             else:
-                messagebox.showerror("Error", "Failed to delete record", parent=self.root)
+                messagebox.showerror(
+                    "Error", "Failed to delete record", parent=self.root
+                )
 
     # =========================================================================
     # ============================= ADD PHOTO =================================
@@ -614,16 +648,21 @@ class Student:
         if file_path:
             # Update the record in the database with the file path
             update_result = self.collection.update_one(
-                {"_id": ObjectId(self.var_id.get())},
-                {"$set": {"photo": file_path}}
+                {"_id": ObjectId(self.var_id.get())}, {"$set": {"photo": file_path}}
             )
 
             if update_result.modified_count > 0:
-                messagebox.showinfo("Success", "Photo added successfully during update", parent=self.root)
+                messagebox.showinfo(
+                    "Success",
+                    "Photo added successfully during update",
+                    parent=self.root,
+                )
                 self.show_data()  # Refresh the table
             else:
-                messagebox.showerror("Error", "Failed to add photo during update", parent=self.root)
-        
+                messagebox.showerror(
+                    "Error", "Failed to add photo during update", parent=self.root
+                )
+
     # =========================================================================
     # =========================== SEARCH STUDENT ==============================
     # =========================================================================
@@ -665,9 +704,8 @@ class Student:
     #             )
     #         )
 
-    #--------------------------------------------------------------------------------------------------------------------------------
-           
-        
+    # --------------------------------------------------------------------------------------------------------------------------------
+
     def update_bg_image(self, event=None):
         window_width = self.root.winfo_width()
         window_height = self.root.winfo_height()
