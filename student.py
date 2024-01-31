@@ -8,7 +8,7 @@ import pymongo
 class Student:
     def __init__(self, root):
         self.root = root
-        self.root.title("Face Recognition System")
+        self.root.title("Face Recognition System - Student Details")
 
         self.client = pymongo.MongoClient("mongodb://localhost:27017/")
         self.database = self.client["student_management"]

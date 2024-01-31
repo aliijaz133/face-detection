@@ -9,7 +9,7 @@ import numpy as np
 class Face_Detector:
     def __init__(self, root):
         self.root = root
-        self.root.title("Face Recognition System")
+        self.root.title("Face Recognition System - Face Detector")
 
         self.canvas = Canvas(self.root)
         self.canvas.pack(fill=BOTH, expand=YES)
