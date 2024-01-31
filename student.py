@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
 from tkinter import messagebox
+from tkinter import filedialog
 import pymongo
 
 class Student:
@@ -177,7 +178,7 @@ class Student:
             text="Class Student Information",
             font=("Times New Roman", 15),
         )
-        Left_3rd_frame.place(x=70, y=270, width=620, height=280)
+        Left_3rd_frame.place(x=70, y=270, width=620, height=320)
 
         # Student ID:
         student_id_lbl = Label(Left_3rd_frame, text="Student Id:", font=("Cursive", 13))
@@ -321,6 +322,18 @@ class Student:
             bg="LightGreen",
         )
         save_btn.grid(row=7, column=3, padx=5, pady=5, sticky=W)
+
+        # Add Photo Button
+        add_photo_btn = Button(
+            Left_3rd_frame,
+            text="Add Photo",
+            command=self.add_photo_data,
+            font=("Times New Roman", 13),
+            cursor="hand2",
+            bg="Blue",
+            fg="white"
+        )
+        add_photo_btn.grid(row=8, column=0, padx=5, pady=5, sticky=W)
 
         # Right label Frame
         Right_frame = LabelFrame(
@@ -477,6 +490,8 @@ class Student:
             self.var_phone.set(data[5])
             self.var_email.set(data[6])
             self.var_address.set(data[7])
+        else:
+            self.add_photo_btn.grid_forget()
 
     # =========================================================================
     # =========================== RESET USER FORM =============================
@@ -571,6 +586,34 @@ class Student:
                 self.show_data()  # Refresh the table
             else:
                 messagebox.showerror("Error", "Failed to delete record", parent=self.root)
+
+    # =========================================================================
+    # ============================= ADD PHOTO =================================
+    # =========================================================================
+    def add_photo_data(self):
+        selected_item = self.student_table.selection()
+        if not selected_item:
+            messagebox.showerror("Error", "Please select a record to add photo", parent=self.root)
+            return
+
+        # Get the values from the selected row
+        data = self.student_table.item(selected_item)["values"]
+
+        # Prompt the user to select a photo
+        file_path = filedialog.askopenfilename(filetypes=[("Image files", "*")])
+
+        if file_path:
+            # Update the record in the database with the file path
+            update_result = self.collection.update_one(
+                {"_id": data[0]},
+                {"$set": {"photo": file_path}}
+            )
+
+            if update_result.modified_count > 0:
+                messagebox.showinfo("Success", "Photo added successfully", parent=self.root)
+                self.show_data()  # Refresh the table
+            else:
+                messagebox.showerror("Error", "Failed to add photo", parent=self.root)
         
     # =========================================================================
     # =========================== EVENT HANDLERS ==============================
@@ -588,7 +631,7 @@ class Student:
 
     # def on_open(self, event=None):
     #     self.root.deiconify()
-
+        
     def update_bg_image(self, event=None):
         window_width = self.root.winfo_width()
         window_height = self.root.winfo_height()
