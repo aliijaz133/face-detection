@@ -4,6 +4,8 @@ from PIL import Image, ImageTk
 from tkinter import messagebox
 from tkinter import filedialog
 import pymongo
+from bson import ObjectId
+
 
 class Student:
     def __init__(self, root):
@@ -538,15 +540,15 @@ class Student:
             messagebox.showerror("Error", "Please select a record to update", parent=self.root)
             return
 
-        # Get the values from the selected row
+
+        data_id = ObjectId(self.var_id.get())
         data = self.student_table.item(selected_item)["values"]
 
-        # Check if any field is empty
+
         if any(value == "" for value in data):
             messagebox.showerror("Error", "Please fill all the fields", parent=self.root)
             return
 
-        # Create a dictionary with updated data
         updated_data = {
             "name": self.var_name.get(),
             "roll": self.var_roll.get(),
@@ -561,19 +563,19 @@ class Student:
             "course": self.var_course.get(),
             "id": self.var_id.get(),
         }
-
-        # Update the record in the database
+        
         update_result = self.collection.update_one(
-            {"_id": data[0]},
+            {"_id": data_id},
             {"$set": updated_data}
         )
-
+    
         if update_result.modified_count > 0:
             messagebox.showinfo("Success", "Record updated successfully", parent=self.root)
-            self.show_data()  # Refresh the table
+            self.show_data()
         else:
             messagebox.showerror("Error", "Failed to update record", parent=self.root)
-    
+        
+            
     # =========================================================================
     # ========================== DELETE DATA FROM SERVER ======================
     # =========================================================================
@@ -583,19 +585,19 @@ class Student:
             messagebox.showerror("Error", "Please select a record to delete", parent=self.root)
             return
 
-        # Get the values from the selected row
-        data = self.student_table.item(selected_item)["values"]
+        # Convert the ID to ObjectId
+        data_id = ObjectId(self.var_id.get())
 
         # Ask for confirmation before deleting
         confirmation = messagebox.askyesno(
             "Confirmation",
-            f"Do you want to delete the record of {data[1]}?",
+            f"Do you want to delete the record of {self.var_name.get()}?",
             parent=self.root
         )
 
         if confirmation:
             # Delete the record from the database
-            delete_result = self.collection.delete_one({"_id": data[0]})
+            delete_result = self.collection.delete_one({"_id": data_id})
 
             if delete_result.deleted_count > 0:
                 messagebox.showinfo("Success", "Record deleted successfully", parent=self.root)
