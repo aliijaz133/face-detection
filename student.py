@@ -278,15 +278,38 @@ class Student:
         )
         radio_btn_2.grid(row=6, column=1, padx=5, pady=5, sticky=W)
 
-        # Cancel Button
-        cancel_btn = Button(
+        # Delete Button
+        delete_btn = Button(
             Left_3rd_frame,
-            text="Cancel",
+            text="Delete",
+            command=self.delete_data,
+            font=("Times New Roman", 13),
+            cursor="hand2",
+            bg="Red",
+        )
+        delete_btn.grid(row=7, column=0, padx=5, pady=5, sticky=W)
+
+        # Update Button
+        update_btn = Button(
+            Left_3rd_frame,
+            text="Update",
+            command=self.update_data,
+            font=("Times New Roman", 13),
+            cursor="hand2",
+            bg="Gray",
+        )
+        update_btn.grid(row=7, column=1, padx=5, pady=5, sticky=W)
+
+        # Reset Button
+        reset_btn = Button(
+            Left_3rd_frame,
+            text="Reset",
+            command=self.reset_data,
             font=("Times New Roman", 13),
             cursor="hand2",
             bg="LightBlue",
         )
-        cancel_btn.grid(row=7, column=2, padx=5, pady=5, sticky=W)
+        reset_btn.grid(row=7, column=2, padx=5, pady=5, sticky=W)
 
         # Submit Button
         save_btn = Button(
@@ -368,6 +391,9 @@ class Student:
 
         self.show_data()
 
+    # =========================================================================
+    # ========================== FETCH DATA FROM SERVER =======================
+    # =========================================================================
     def show_data(self):
 
         for item in self.student_table.get_children():
@@ -393,6 +419,10 @@ class Student:
                 )
             )
 
+    # =========================================================================
+    # ========================== SAVE DATA IN SERVER ==========================
+    # =========================================================================
+            
     def add_data(self):
         if self.var_name.get() == "" or self.var_roll.get() == "" or self.var_gender.get() == "" or self.var_date.get() == self.var_phone.get() or self.var_email.get() == "" or self.var_address.get() == "" or self.var_year.get() == "" or self.var_batch.get() == "" or self.var_course.get() == "" or self.var_id.get() == "":
             messagebox.showerror(
@@ -447,6 +477,117 @@ class Student:
             self.var_phone.set(data[5])
             self.var_email.set(data[6])
             self.var_address.set(data[7])
+
+    # =========================================================================
+    # =========================== RESET USER FORM =============================
+    # =========================================================================
+
+    def reset_data(self):
+        self.var_name.set("")
+        self.var_roll.set("")
+        self.var_gender.set("")
+        self.var_date.set("")
+        self.var_phone.set("")
+        self.var_email.set("")
+        self.var_address.set("")
+        self.var_dep.set("Please select")
+        self.var_year.set("Please select")
+        self.var_batch.set("Please select")
+        self.var_course.set("Please select")
+        self.var_id.set("")
+        self.var_radio1.set(None)        
+    
+    # =========================================================================
+    # ========================== UPDATE DATA IN SERVER ========================
+    # =========================================================================
+    
+    def update_data(self):
+        selected_item = self.student_table.selection()
+        if not selected_item:
+            messagebox.showerror("Error", "Please select a record to update", parent=self.root)
+            return
+
+        # Get the values from the selected row
+        data = self.student_table.item(selected_item)["values"]
+
+        # Check if any field is empty
+        if any(value == "" for value in data):
+            messagebox.showerror("Error", "Please fill all the fields", parent=self.root)
+            return
+
+        # Create a dictionary with updated data
+        updated_data = {
+            "name": self.var_name.get(),
+            "roll": self.var_roll.get(),
+            "gender": self.var_gender.get(),
+            "dob": self.var_date.get(),
+            "phone": self.var_phone.get(),
+            "email": self.var_email.get(),
+            "address": self.var_address.get(),
+            "department": self.var_dep.get(),
+            "year": self.var_year.get(),
+            "batch": self.var_batch.get(),
+            "course": self.var_course.get(),
+            "id": self.var_id.get(),
+        }
+
+        # Update the record in the database
+        update_result = self.collection.update_one(
+            {"_id": data[0]},
+            {"$set": updated_data}
+        )
+
+        if update_result.modified_count > 0:
+            messagebox.showinfo("Success", "Record updated successfully", parent=self.root)
+            self.show_data()  # Refresh the table
+        else:
+            messagebox.showerror("Error", "Failed to update record", parent=self.root)
+    
+    # =========================================================================
+    # ========================== DELETE DATA FROM SERVER ======================
+    # =========================================================================
+    def delete_data(self):
+        selected_item = self.student_table.selection()
+        if not selected_item:
+            messagebox.showerror("Error", "Please select a record to delete", parent=self.root)
+            return
+
+        # Get the values from the selected row
+        data = self.student_table.item(selected_item)["values"]
+
+        # Ask for confirmation before deleting
+        confirmation = messagebox.askyesno(
+            "Confirmation",
+            f"Do you want to delete the record of {data[1]}?",
+            parent=self.root
+        )
+
+        if confirmation:
+            # Delete the record from the database
+            delete_result = self.collection.delete_one({"_id": data[0]})
+
+            if delete_result.deleted_count > 0:
+                messagebox.showinfo("Success", "Record deleted successfully", parent=self.root)
+                self.show_data()  # Refresh the table
+            else:
+                messagebox.showerror("Error", "Failed to delete record", parent=self.root)
+        
+    # =========================================================================
+    # =========================== EVENT HANDLERS ==============================
+    # =========================================================================
+    # def on_close(self, event=None):
+    #     # Ask for confirmation before closing
+    #     confirmation = messagebox.askyesno(
+    #         "Confirmation",
+    #         "Are you sure you want to exit?",
+    #         parent=self.root
+    #     )
+
+    #     if confirmation:
+    #         self.root.destroy()
+
+    # def on_open(self, event=None):
+    #     self.root.deiconify()
 
     def update_bg_image(self, event=None):
         window_width = self.root.winfo_width()
