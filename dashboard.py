@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
-
+from student import Student
 
 class Face_Recognition_System:
     def __init__(self, root):
@@ -51,10 +51,10 @@ class Face_Recognition_System:
         img4 = img4.resize((200, 200), Image.BICUBIC)
         self.photoImg4 = ImageTk.PhotoImage(img4)
 
-        b1 = Button(image=self.photoImg4, cursor="hand2")
+        b1 = Button(image=self.photoImg4, command=self.open_student, cursor="hand2")
         b1.place(x=300, y=200, width=220, height=220)
 
-        b2 = Button(text="Student Details", command=self.student_details, bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
+        b2 = Button(text="Student Details", command=self.open_student, bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b2.place(x=300, y=418, width=220, height=50)
 
         # Face Detector
@@ -136,10 +136,11 @@ class Face_Recognition_System:
         b15 = Button(text="Exit", bg="blue", font=("Arival", 14), fg="white", cursor="hand2")
         b15.place(x=1050, y=718, width=220, height=50)
 
-        # first_entry = Entry(width=30)
-        # first_entry.place(x=50, y=250)
-        # first_entry.pack(padx=7, pady=7)
-
+    def open_student(self):
+        student_window = Toplevel(self.root)
+        student_frame = Student(student_window)
+        student_window.geometry("1440x1080")
+        student_window.mainloop()
 
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
