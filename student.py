@@ -625,21 +625,48 @@ class Student:
                 messagebox.showerror("Error", "Failed to add photo during update", parent=self.root)
         
     # =========================================================================
-    # =========================== EVENT HANDLERS ==============================
+    # =========================== SEARCH STUDENT ==============================
     # =========================================================================
-    # def on_close(self, event=None):
-    #     # Ask for confirmation before closing
-    #     confirmation = messagebox.askyesno(
-    #         "Confirmation",
-    #         "Are you sure you want to exit?",
-    #         parent=self.root
-    #     )
+    # def search_data(self):
+    #     search_criteria = search_student.get()
+    #     search_value = search_entry.get()
 
-    #     if confirmation:
-    #         self.root.destroy()
+    #     if search_criteria == "Please select" or not search_value:
+    #         messagebox.showerror("Error", "Please select search criteria and enter search value", parent=self.root)
+    #         return
 
-    # def on_open(self, event=None):
-    #     self.root.deiconify()
+    #     # Clear existing data in the table
+    #     for item in self.student_table.get_children():
+    #         self.student_table.delete(item)
+
+    #     # Perform search based on selected criteria and value
+    #     if search_criteria == "Name":
+    #         cursor = self.collection.find({"name": {"$regex": f".*{search_value}.*", "$options": "i"}})
+    #     elif search_criteria == "Roll No":
+    #         cursor = self.collection.find({"roll": {"$regex": f".*{search_value}.*", "$options": "i"}})
+    #     elif search_criteria == "Phone No":
+    #         cursor = self.collection.find({"phone": {"$regex": f".*{search_value}.*", "$options": "i"}})
+
+    #     # Populate the table with search results
+    #     for record in cursor:
+    #         self.student_table.insert(
+    #             "",
+    #             "end",
+    #             values=(
+    #                 record["_id"],
+    #                 record["name"],
+    #                 record["roll"],
+    #                 record["gender"],
+    #                 record["dob"],
+    #                 record["phone"],
+    #                 record["email"],
+    #                 record["address"],
+    #                 record.get("department", ""),
+    #             )
+    #         )
+
+    #--------------------------------------------------------------------------------------------------------------------------------
+           
         
     def update_bg_image(self, event=None):
         window_width = self.root.winfo_width()
