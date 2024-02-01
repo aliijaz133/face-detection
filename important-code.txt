@@ -1,0 +1,6 @@
+Slider code for define range
+
+# w2 = Scale(Right_sec_Frame, from_=0, to=100, orient=HORIZONTAL)
+# w2.set(53)
+# w2.configure(state='disabled')
+# w2.place(x=50, y=270)
