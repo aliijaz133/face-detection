@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, Label, Frame
 from PIL import Image, ImageTk, ImageDraw
 
 
@@ -57,7 +57,9 @@ class Developer:
 
         Image_Frame = Frame(Main_Frame, bg="white")
         Image_Frame.place(x=10, y=5, width=200, height=200)
-        img_path = "/home/usamaumer/PycharmProjects/pythonProject/asset/images/ali_ijaz.png"
+        img_path = (
+            "/home/usamaumer/PycharmProjects/pythonProject/asset/images/ali_ijaz.png"
+        )
         my_image = Image.open(img_path)
         my_image = my_image.resize((150, 150), Image.BICUBIC)
         mask = self.create_circle_mask((150, 150))
@@ -67,11 +69,13 @@ class Developer:
         image_label.image = my_image
         image_label.pack(pady=5)
 
-
         # =========================== DETAIL FRAME =============================
-        Detail_Frame = LabelFrame(Main_Frame, text="▌│█║▌│█║▌║▌║║▌║▌║█│▌▌║▌║║▌▌│█║▌║▌█║█│▌▌║▌║█│▌║▌║▌║", font=("",14))
+        Detail_Frame = LabelFrame(
+            Main_Frame,
+            text="▌│█║▌│█║▌║▌║║▌║▌║█│▌▌║▌║║▌▌│█║▌║▌█║█│▌▌║▌║█│▌║▌║▌║",
+            font=("", 14),
+        )
         Detail_Frame.place(x=10, y=170, width=640, height=400)
-
 
         # =========================================================================
         # ===================== Left Below Frame For Skills =======================
@@ -89,14 +93,217 @@ class Developer:
         Below_Frame.config(background="white")
 
         # =========================== DETAIL FRAME =============================
-        Below_Sec_Frame = LabelFrame(Below_Frame, text="", font=("",14))
+        Below_Sec_Frame = LabelFrame(Below_Frame, text="", font=("", 14))
         Below_Sec_Frame.place(x=10, y=2, width=640, height=260)
 
-        label1 = Label(Below_Sec_Frame, text="• Python", font=("Times New Roman",15), cursor="xterm")
-        label1.grid(row=0, column=0, padx=5, pady=5)
+        # ======================== Python =================================
+        dot1 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot1.grid(row=0, column=0, padx=5, pady=5)
+        label1 = Label(
+            Below_Sec_Frame, text="Python", font=("Times New Roman", 14), cursor="xterm"
+        )
+        label1.grid(row=0, column=1, padx=0, pady=5)
 
-        label2 = Label(Below_Sec_Frame, text="• Tkinter", font=("Times New Roman",15), cursor="xterm")
-        label2.grid(row=1, column=0, padx=5, pady=5)
+        # ======================== Tkinter =================================
+        dot2 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot2.grid(row=1, column=0, padx=5, pady=5)
+        label2 = Label(
+            Below_Sec_Frame,
+            text="Tkinter",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label2.grid(row=1, column=1, padx=0, pady=5)
+
+        # ======================== HTML5 =================================
+        dot3 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot3.grid(row=2, column=0, padx=5, pady=5)
+        label3 = Label(
+            Below_Sec_Frame, text="HTML5", font=("Times New Roman", 14), cursor="xterm"
+        )
+        label3.grid(row=2, column=1, padx=0, pady=5)
+
+        # ======================== CSS =================================
+        dot4 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot4.grid(row=3, column=0, padx=5, pady=5)
+        label4 = Label(
+            Below_Sec_Frame, text="CSS", font=("Times New Roman", 14), cursor="xterm"
+        )
+        label4.grid(row=3, column=1, padx=0, pady=5)
+
+        # ========================Javascript=================================
+        dot5 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot5.grid(row=4, column=0, padx=5, pady=5)
+        label5 = Label(
+            Below_Sec_Frame,
+            text="Javascript",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label5.grid(row=4, column=1, padx=0, pady=5)
+
+        # ======================== Typescript =================================
+        dot6 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot6.grid(row=5, column=0, padx=5, pady=5)
+        label6 = Label(
+            Below_Sec_Frame,
+            text="Typescript",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label6.grid(row=5, column=1, padx=0, pady=5)
+
+        # ======================== C++ =================================
+        dot7 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot7.grid(row=6, column=0, padx=5, pady=5)
+        label7 = Label(
+            Below_Sec_Frame, text="C++", font=("Times New Roman", 14), cursor="xterm"
+        )
+        label7.grid(row=6, column=1, padx=0, pady=5)
+
+        # ======================== Angular Material =================================
+        dot8 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot8.grid(row=0, column=2, padx=5, pady=5)
+        label8 = Label(
+            Below_Sec_Frame,
+            text="Angular Material",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label8.grid(row=0, column=3, padx=0, pady=5)
+
+        # ======================== Ant Design Material =================================
+        dot9 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot9.grid(row=1, column=2, padx=5, pady=5)
+        label9 = Label(
+            Below_Sec_Frame,
+            text="Ant Design Material",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label9.grid(row=1, column=3, padx=0, pady=5)
+
+        # ======================== Ng-Prime Material =================================
+        dot10 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot10.grid(row=2, column=2, padx=5, pady=5)
+        label10 = Label(
+            Below_Sec_Frame,
+            text="Ng-Prime Material",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label10.grid(row=2, column=3, padx=0, pady=5)
+
+        # ======================== Ng-Zorro Material =================================
+        dot11 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot11.grid(row=3, column=2, padx=5, pady=5)
+        label11 = Label(
+            Below_Sec_Frame,
+            text="Ng-Zorro Material",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label11.grid(row=3, column=3, padx=0, pady=5)
+
+        # ======================== Adobe Photoshop =================================
+        dot12 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot12.grid(row=4, column=2, padx=5, pady=5)
+        label12 = Label(
+            Below_Sec_Frame,
+            text="Adobe Photoshop",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label12.grid(row=4, column=3, padx=0, pady=5)
+
+        # ======================== Adobe Illustrator =================================
+        dot13 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot13.grid(row=5, column=2, padx=5, pady=5)
+        label13 = Label(
+            Below_Sec_Frame,
+            text="Adobe Illustrator",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label13.grid(row=5, column=3, padx=0, pady=5)
+
+        # ======================== Adobe After Effects =================================
+        dot14 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot14.grid(row=6, column=2, padx=5, pady=5)
+        label14 = Label(
+            Below_Sec_Frame,
+            text="Adobe After Effects",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label14.grid(row=6, column=3, padx=0, pady=5)
+
+        # ======================== Adobe Premier =================================
+        dot15 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot15.grid(row=0, column=4, padx=5, pady=5)
+        label15 = Label(
+            Below_Sec_Frame,
+            text="Adobe Premier",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label15.grid(row=0, column=5, padx=0, pady=5)
+
+        # ======================== Ms-Office =================================
+        dot16 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot16.grid(row=1, column=4, padx=5, pady=5)
+        label16 = Label(
+            Below_Sec_Frame,
+            text="Ms-Office",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label16.grid(row=1, column=5, padx=0, pady=5)
+
+        # ======================== In-Page =================================
+        dot17 = Label(
+            Below_Sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        dot17.grid(row=2, column=4, padx=5, pady=5)
+        label17 = Label(
+            Below_Sec_Frame,
+            text="In-Page",
+            font=("Times New Roman", 14),
+            cursor="xterm",
+        )
+        label17.grid(row=2, column=5, padx=0, pady=5)
 
         # =========================================================================
         # ===================== Right Frame For Projects ==========================
@@ -114,7 +321,7 @@ class Developer:
         Right_Frame.config(background="white")
 
         # =========================== DETAIL FRAME =============================
-        Right_sec_Frame = LabelFrame(Right_Frame, text="", font=("",14))
+        Right_sec_Frame = LabelFrame(Right_Frame, text="", font=("", 14))
         Right_sec_Frame.place(x=10, y=2, width=640, height=870)
 
     # =========================================================================
@@ -143,7 +350,7 @@ class Developer:
         draw = ImageDraw.Draw(mask)
         draw.ellipse((0, 0, size[0], size[1]), fill=255)
         return mask
-    
+
 
 if __name__ == "__main__":
     root = Tk()
