@@ -104,7 +104,7 @@ class Developer:
         label1 = Label(
             Below_Sec_Frame, text="Python", font=("Times New Roman", 14), cursor="xterm"
         )
-        label1.grid(row=0, column=1, padx=0, pady=5)
+        label1.grid(row=0, column=1, padx=0, pady=5, sticky=W)
 
         # ======================== Tkinter =================================
         dot2 = Label(
@@ -117,7 +117,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label2.grid(row=1, column=1, padx=0, pady=5)
+        label2.grid(row=1, column=1, padx=0, pady=5, sticky=W)
 
         # ======================== HTML5 =================================
         dot3 = Label(
@@ -127,7 +127,7 @@ class Developer:
         label3 = Label(
             Below_Sec_Frame, text="HTML5", font=("Times New Roman", 14), cursor="xterm"
         )
-        label3.grid(row=2, column=1, padx=0, pady=5)
+        label3.grid(row=2, column=1, padx=0, pady=5, sticky=W)
 
         # ======================== CSS =================================
         dot4 = Label(
@@ -137,7 +137,7 @@ class Developer:
         label4 = Label(
             Below_Sec_Frame, text="CSS", font=("Times New Roman", 14), cursor="xterm"
         )
-        label4.grid(row=3, column=1, padx=0, pady=5)
+        label4.grid(row=3, column=1, padx=0, pady=5, sticky=W)
 
         # ========================Javascript=================================
         dot5 = Label(
@@ -150,7 +150,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label5.grid(row=4, column=1, padx=0, pady=5)
+        label5.grid(row=4, column=1, padx=0, pady=5, sticky=W)
 
         # ======================== Typescript =================================
         dot6 = Label(
@@ -163,7 +163,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label6.grid(row=5, column=1, padx=0, pady=5)
+        label6.grid(row=5, column=1, padx=0, pady=5, sticky=W)
 
         # ======================== C++ =================================
         dot7 = Label(
@@ -173,7 +173,7 @@ class Developer:
         label7 = Label(
             Below_Sec_Frame, text="C++", font=("Times New Roman", 14), cursor="xterm"
         )
-        label7.grid(row=6, column=1, padx=0, pady=5)
+        label7.grid(row=6, column=1, padx=0, pady=5, sticky=W)
 
         # ======================== Angular Material =================================
         dot8 = Label(
@@ -186,7 +186,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label8.grid(row=0, column=3, padx=0, pady=5)
+        label8.grid(row=0, column=3, padx=0, pady=5, sticky=W)
 
         # ======================== Ant Design Material =================================
         dot9 = Label(
@@ -199,7 +199,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label9.grid(row=1, column=3, padx=0, pady=5)
+        label9.grid(row=1, column=3, padx=0, pady=5, sticky=W)
 
         # ======================== Ng-Prime Material =================================
         dot10 = Label(
@@ -212,7 +212,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label10.grid(row=2, column=3, padx=0, pady=5)
+        label10.grid(row=2, column=3, padx=0, pady=5, sticky=W)
 
         # ======================== Ng-Zorro Material =================================
         dot11 = Label(
@@ -225,7 +225,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label11.grid(row=3, column=3, padx=0, pady=5)
+        label11.grid(row=3, column=3, padx=0, pady=5, sticky=W)
 
         # ======================== Adobe Photoshop =================================
         dot12 = Label(
@@ -238,7 +238,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label12.grid(row=4, column=3, padx=0, pady=5)
+        label12.grid(row=4, column=3, padx=0, pady=5, sticky=W)
 
         # ======================== Adobe Illustrator =================================
         dot13 = Label(
@@ -251,7 +251,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label13.grid(row=5, column=3, padx=0, pady=5)
+        label13.grid(row=5, column=3, padx=0, pady=5, sticky=W)
 
         # ======================== Adobe After Effects =================================
         dot14 = Label(
@@ -264,7 +264,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label14.grid(row=6, column=3, padx=0, pady=5)
+        label14.grid(row=6, column=3, padx=0, pady=5, sticky=W)
 
         # ======================== Adobe Premier =================================
         dot15 = Label(
@@ -277,7 +277,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label15.grid(row=0, column=5, padx=0, pady=5)
+        label15.grid(row=0, column=5, padx=0, pady=5, sticky=W)
 
         # ======================== Ms-Office =================================
         dot16 = Label(
@@ -290,7 +290,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label16.grid(row=1, column=5, padx=0, pady=5)
+        label16.grid(row=1, column=5, padx=0, pady=5, sticky=W)
 
         # ======================== In-Page =================================
         dot17 = Label(
@@ -303,7 +303,7 @@ class Developer:
             font=("Times New Roman", 14),
             cursor="xterm",
         )
-        label17.grid(row=2, column=5, padx=0, pady=5)
+        label17.grid(row=2, column=5, padx=0, pady=5, sticky=W)
 
         # =========================================================================
         # ===================== Right Frame For Projects ==========================
