@@ -72,11 +72,37 @@ class Developer:
         Detail_Frame = LabelFrame(Main_Frame, text="▌│█║▌│█║▌║▌║║▌║▌║█│▌▌║▌║║▌▌│█║▌║▌█║█│▌▌║▌║█│▌║▌║▌║", font=("",14))
         Detail_Frame.place(x=10, y=170, width=640, height=400)
 
+
         # =========================================================================
-        # ===================== Right Frame For Portifilo =========================
+        # ===================== Left Below Frame For Skills =======================
         # =========================================================================
 
-        Main_Frame = LabelFrame(
+        Below_Frame = LabelFrame(
+            self.root,
+            bd=2,
+            relief=RIDGE,
+            text="Skills",
+            font=("Times New Roman", 14),
+            bg="white",
+        )
+        Below_Frame.place(x=40, y=680, width=660, height=290)
+        Below_Frame.config(background="white")
+
+        # =========================== DETAIL FRAME =============================
+        Below_Sec_Frame = LabelFrame(Below_Frame, text="", font=("",14))
+        Below_Sec_Frame.place(x=10, y=2, width=640, height=260)
+
+        label1 = Label(Below_Sec_Frame, text="• Python", font=("Times New Roman",15), cursor="xterm")
+        label1.grid(row=0, column=0, padx=5, pady=5)
+
+        label2 = Label(Below_Sec_Frame, text="• Tkinter", font=("Times New Roman",15), cursor="xterm")
+        label2.grid(row=1, column=0, padx=5, pady=5)
+
+        # =========================================================================
+        # ===================== Right Frame For Projects ==========================
+        # =========================================================================
+
+        Right_Frame = LabelFrame(
             self.root,
             bd=2,
             relief=RIDGE,
@@ -84,12 +110,12 @@ class Developer:
             font=("Times New Roman", 14),
             bg="white",
         )
-        Main_Frame.place(x=740, y=70, width=660, height=600)
-        Main_Frame.config(background="white")
+        Right_Frame.place(x=740, y=70, width=660, height=900)
+        Right_Frame.config(background="white")
 
         # =========================== DETAIL FRAME =============================
-        Detail_Frame = LabelFrame(Main_Frame, text="", font=("",14))
-        Detail_Frame.place(x=10, y=2, width=640, height=570)
+        Right_sec_Frame = LabelFrame(Right_Frame, text="", font=("",14))
+        Right_sec_Frame.place(x=10, y=2, width=640, height=870)
 
     # =========================================================================
     # ============================== FUNCTIONS ================================
