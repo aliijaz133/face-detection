@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageDraw
 
 
 class Developer:
@@ -38,6 +38,63 @@ class Developer:
         # Bind the window resize event to update the background image and title label
         self.root.bind("<Configure>", self.on_resize)
 
+        # =========================================================================
+        # ===================== Right Frame For Portifilo =========================
+        # =========================================================================
+
+        Main_Frame = LabelFrame(
+            self.root,
+            bd=2,
+            relief=RIDGE,
+            text="Portifilo",
+            font=("Times New Roman", 14),
+            bg="white",
+        )
+        Main_Frame.place(x=40, y=70, width=660, height=600)
+        Main_Frame.config(background="white")
+
+        # +----------------------------IMAGE--------------------------------+
+
+        Image_Frame = Frame(Main_Frame, bg="white")
+        Image_Frame.place(x=10, y=5, width=200, height=200)
+        img_path = "/home/usamaumer/PycharmProjects/pythonProject/asset/images/ali_ijaz.png"
+        my_image = Image.open(img_path)
+        my_image = my_image.resize((150, 150), Image.BICUBIC)
+        mask = self.create_circle_mask((150, 150))
+        my_image.putalpha(mask)
+        my_image = ImageTk.PhotoImage(my_image)
+        image_label = Label(Image_Frame, image=my_image, bg="white", cursor="hand2")
+        image_label.image = my_image
+        image_label.pack(pady=5)
+
+
+        # =========================== DETAIL FRAME =============================
+        Detail_Frame = LabelFrame(Main_Frame, text="▌│█║▌│█║▌║▌║║▌║▌║█│▌▌║▌║║▌▌│█║▌║▌█║█│▌▌║▌║█│▌║▌║▌║", font=("",14))
+        Detail_Frame.place(x=10, y=170, width=640, height=400)
+
+        # =========================================================================
+        # ===================== Right Frame For Portifilo =========================
+        # =========================================================================
+
+        Main_Frame = LabelFrame(
+            self.root,
+            bd=2,
+            relief=RIDGE,
+            text="Projects",
+            font=("Times New Roman", 14),
+            bg="white",
+        )
+        Main_Frame.place(x=740, y=70, width=660, height=600)
+        Main_Frame.config(background="white")
+
+        # =========================== DETAIL FRAME =============================
+        Detail_Frame = LabelFrame(Main_Frame, text="", font=("",14))
+        Detail_Frame.place(x=10, y=2, width=640, height=570)
+
+    # =========================================================================
+    # ============================== FUNCTIONS ================================
+    # =========================================================================
+
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
         window_width = self.root.winfo_width()
@@ -55,9 +112,15 @@ class Developer:
         self.title_lbl.config(width=window_width)
         self.update_bg_image()
 
+    def create_circle_mask(self, size):
+        mask = Image.new("L", size, 0)
+        draw = ImageDraw.Draw(mask)
+        draw.ellipse((0, 0, size[0], size[1]), fill=255)
+        return mask
+    
 
 if __name__ == "__main__":
     root = Tk()
     obj = Developer(root)
-    root.geometry("1440x1080")  # Set an initial size for the window
+    root.geometry("1440x1080")
     root.mainloop()
