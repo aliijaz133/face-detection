@@ -324,6 +324,46 @@ class Developer:
         Right_sec_Frame = LabelFrame(Right_Frame, text="", font=("", 14))
         Right_sec_Frame.place(x=10, y=2, width=640, height=870)
 
+        # ======================== Sign Language Recognizer =================================
+        heading_project_1 = Label(
+            Right_sec_Frame,
+            text="Sign Language Recognizer:",
+            font=("Times New Roman", 15, "bold"),
+            cursor="xterm",
+        )
+        heading_project_1.place(x=10, y=10)
+        sign_langauge_detail = "In this project we proposed a method for recognizing hand gesture. Sign language Recognizer is the task of recognizing sign language gloses from video stream. It is very important research area since it can bridge communication gap between hearing and Deep people, facilitating the social inclusion of hearing impaired people. This type of gesture-based language allows people to convey ideas and thoughts easily overcoming the barries caused by difficulties from hearing issues."
+        project_desc_1 = Label(
+            Right_sec_Frame,
+            text=sign_langauge_detail,
+            font=("Times New Roman", 13),
+            cursor="xterm",
+            wraplength=600,
+        )
+        project_desc_1.place(x=20, y=40)
+        project_dot_1 = Label(
+            Right_sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        project_dot_1.place(x=30, y=170)
+        project_bullet_point_1 = Label(
+            Right_sec_Frame,
+            text="SLR Capture signs",
+            font=("Times New Roman", 13),
+            cursor="xterm",
+        )
+        project_bullet_point_1.place(x=50, y=170)
+        project_dot_2 = Label(
+            Right_sec_Frame, text="•", font=("Times New Roman", 15), cursor="xterm"
+        )
+        project_dot_2.place(x=30, y=205)
+        project_bullet_point_2 = Label(
+            Right_sec_Frame,
+            text="Convert the signs to text",
+            font=("Times New Roman", 13),
+            cursor="xterm",
+        )
+        project_bullet_point_2.place(x=50, y=205)
+
     # =========================================================================
     # ============================== FUNCTIONS ================================
     # =========================================================================
