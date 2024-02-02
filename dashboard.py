@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
 from student import Student
+from tkinter import messagebox
 
 
 class Face_Recognition_System:
@@ -148,11 +149,12 @@ class Face_Recognition_System:
         img8 = img8.resize((200, 200), Image.BICUBIC)
         self.photoImg8 = ImageTk.PhotoImage(img8)
 
-        b8 = Button(image=self.photoImg8, cursor="hand2")
+        b8 = Button(image=self.photoImg8, comman=self.trained_data, cursor="hand2")
         b8.place(x=300, y=500, width=220, height=220)
 
         b9 = Button(
             text="Train Data",
+            comman=self.trained_data,
             bg="blue",
             font=("Arival", 14),
             fg="white",
@@ -239,6 +241,17 @@ class Face_Recognition_System:
         face_detector_frame = Developer(face_detector_window)
         face_detector_window.geometry("920x320")
         face_detector_window.mainloop()
+
+    def trained_data(self):
+        from trainedData import Image_Data_Trained
+
+        image_data_trained_instance = Image_Data_Trained()
+        image_data_trained_instance.detect_faces()
+        if hasattr(image_data_trained_instance):
+            messagebox.showinfo("Image data trained")
+        else:
+            messagebox.showinfo("Image data not trained")
+
 
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
