@@ -77,6 +77,42 @@ class Developer:
         )
         Detail_Frame.place(x=10, y=170, width=640, height=400)
 
+        # =========================== NAME =========================
+        my_name1 = Label(Detail_Frame, text="Name:", font=("Times New Roman", 14) )
+        my_name1.grid(row=0, column=0, padx=5, pady=5, sticky=W)
+        my_name2 = Label(Detail_Frame, text="Ali Ijaz", font=("Times New Roman", 14, "bold") )
+        my_name2.grid(row=0, column=1, padx=5, pady=5, sticky=W)
+
+        # ====================== Email =============================
+        my_name3 = Label(Detail_Frame, text="Email:", font=("Times New Roman", 14) )
+        my_name3.grid(row=1, column=0, padx=5, pady=5, sticky=W)
+        my_name4 = Label(Detail_Frame, text="aliejaz0072@gmail.com", font=("Times New Roman", 14, "bold") )
+        my_name4.grid(row=1, column=1, padx=5, pady=5, sticky=W)
+
+        # ====================== Contact Number =============================
+        my_name5 = Label(Detail_Frame, text="Contact:", font=("Times New Roman", 14) )
+        my_name5.grid(row=2, column=0, padx=5, pady=5, sticky=W)
+        my_name6 = Label(Detail_Frame, text="+92 (305) 117 211 1", font=("Times New Roman", 14, "bold") )
+        my_name6.grid(row=2, column=1, padx=5, pady=5, sticky=W)
+
+        # ====================== Address =============================
+        my_name7 = Label(Detail_Frame, text="Address:", font=("Times New Roman", 14) )
+        my_name7.grid(row=3, column=0, padx=5, pady=5, sticky=W)
+        my_name8 = Label(Detail_Frame, text="Parachinar Pakistan", font=("Times New Roman", 14, "bold") )
+        my_name8.grid(row=3, column=1, padx=5, pady=5, sticky=W)
+
+        # ====================== Designation =============================
+        my_name9 = Label(Detail_Frame, text="Designation:", font=("Times New Roman", 14) )
+        my_name9.grid(row=4, column=0, padx=5, pady=5, sticky=W)
+        my_name10 = Label(Detail_Frame, text="Full Stack Developer", font=("Times New Roman", 14, "bold") )
+        my_name10.grid(row=4, column=1, padx=5, pady=5, sticky=W)
+
+        # ====================== Github =============================
+        my_name7 = Label(Detail_Frame, text="Github:", font=("Times New Roman", 14) )
+        my_name7.grid(row=3, column=0, padx=5, pady=5, sticky=W)
+        my_name8 = Label(Detail_Frame, text="https://github.com/aliijaz133", font=("Times New Roman", 14, "bold") )
+        my_name8.grid(row=3, column=1, padx=5, pady=5, sticky=W)
+
         # =========================================================================
         # ===================== Left Below Frame For Skills =======================
         # =========================================================================
