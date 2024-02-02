@@ -31,11 +31,11 @@ class Image_Data_Trained:
     if __name__ == "__main__":
 
         input_folder = (
-            "/home/usamaumer/PycharmProjects/pythonProject/asset/student-image"
+            "./asset/student-image"
         )
 
         output_folder = (
-            "/home/usamaumer/PycharmProjects/pythonProject/asset/trained-data"
+            "./asset/trained-data"
         )
 
         detect_faces(input_folder, output_folder)
