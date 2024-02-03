@@ -32,6 +32,7 @@ class Student:
         self.var_image = StringVar()
         self.var_photo = StringVar()
         self.var_id = StringVar()
+        self.var_id.set("Auto Generated ID")
         self.var_gender = StringVar()
         self.var_radio1 = StringVar()
 
@@ -194,11 +195,17 @@ class Student:
 
         # Student ID:
         student_id_lbl = Label(Left_3rd_frame, text="Student Id:", font=("Cursive", 13))
-        student_id_lbl.grid(row=0, column=0, padx=5, sticky=W)
+        student_id_lbl.grid(row=0, column=0, padx=5, sticky="W")
+
         student_id_entry = Entry(
-            Left_3rd_frame, textvariable=self.var_id, font=("Times New Roman",), bd=2
+            Left_3rd_frame, textvariable=self.var_id, font=("Times New Roman",), bd=2, state="readonly", cursor="hand2"
         )
         student_id_entry.grid(row=0, column=1)
+
+        # Set placeholder text and its color
+        place_holder = "Auto Generated"
+        student_id_entry.insert(0, place_holder)
+        student_id_entry.config(fg="gray", bg="white")
 
         # Student Name:
         student_name_lbl = Label(
@@ -518,7 +525,7 @@ class Student:
             self.var_year.set("Please select")
             self.var_batch.set("Please select")
             self.var_course.set("Please select")
-            self.var_id.set("")
+            self.var_id.set("Auto Generated ID")
             self.var_radio1.set(None)
 
             # Update the table immediately after saving new data
@@ -554,7 +561,7 @@ class Student:
         self.var_year.set("Please select")
         self.var_batch.set("Please select")
         self.var_course.set("Please select")
-        self.var_id.set("")
+        self.var_id.set("Auto Generated ID")
         self.var_radio1.set(None)
 
     # =========================================================================
