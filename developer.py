@@ -78,40 +78,110 @@ class Developer:
         Detail_Frame.place(x=10, y=170, width=640, height=400)
 
         # =========================== NAME =========================
-        my_name1 = Label(Detail_Frame, text="Name:", font=("Times New Roman", 14) )
+        my_name1 = Label(
+            Detail_Frame, text="Name:", font=("Times New Roman", 14), cursor="sailboat"
+        )
         my_name1.grid(row=0, column=0, padx=5, pady=5, sticky=W)
-        my_name2 = Label(Detail_Frame, text="Ali Ijaz", font=("Times New Roman", 14, "bold") )
+        my_name2 = Label(
+            Detail_Frame,
+            text="Ali Ijaz",
+            font=("Times New Roman", 14, "bold"),
+            cursor="sailboat",
+        )
         my_name2.grid(row=0, column=1, padx=5, pady=5, sticky=W)
 
         # ====================== Email =============================
-        my_name3 = Label(Detail_Frame, text="Email:", font=("Times New Roman", 14) )
+        my_name3 = Label(
+            Detail_Frame, text="Email:", font=("Times New Roman", 14), cursor="sailboat"
+        )
         my_name3.grid(row=1, column=0, padx=5, pady=5, sticky=W)
-        my_name4 = Label(Detail_Frame, text="aliejaz0072@gmail.com", font=("Times New Roman", 14, "bold") )
+        my_name4 = Label(
+            Detail_Frame,
+            text="aliejaz0072@gmail.com",
+            font=("Times New Roman", 14, "bold"),
+            cursor="sailboat",
+        )
         my_name4.grid(row=1, column=1, padx=5, pady=5, sticky=W)
 
         # ====================== Contact Number =============================
-        my_name5 = Label(Detail_Frame, text="Contact:", font=("Times New Roman", 14) )
+        my_name5 = Label(
+            Detail_Frame,
+            text="Contact:",
+            font=("Times New Roman", 14),
+            cursor="sailboat",
+        )
         my_name5.grid(row=2, column=0, padx=5, pady=5, sticky=W)
-        my_name6 = Label(Detail_Frame, text="+92 (305) 117 211 1", font=("Times New Roman", 14, "bold") )
+        my_name6 = Label(
+            Detail_Frame,
+            text="+92 (305) 117 211 1",
+            font=("Times New Roman", 14, "bold"),
+            cursor="sailboat",
+        )
         my_name6.grid(row=2, column=1, padx=5, pady=5, sticky=W)
 
         # ====================== Address =============================
-        my_name7 = Label(Detail_Frame, text="Address:", font=("Times New Roman", 14) )
+        my_name7 = Label(
+            Detail_Frame,
+            text="Address:",
+            font=("Times New Roman", 14),
+            cursor="sailboat",
+        )
         my_name7.grid(row=3, column=0, padx=5, pady=5, sticky=W)
-        my_name8 = Label(Detail_Frame, text="Parachinar Pakistan", font=("Times New Roman", 14, "bold") )
+        my_name8 = Label(
+            Detail_Frame,
+            text="Parachinar Pakistan",
+            font=("Times New Roman", 14, "bold"),
+            cursor="sailboat",
+        )
         my_name8.grid(row=3, column=1, padx=5, pady=5, sticky=W)
 
         # ====================== Designation =============================
-        my_name9 = Label(Detail_Frame, text="Designation:", font=("Times New Roman", 14) )
+        my_name9 = Label(
+            Detail_Frame,
+            text="Designation:",
+            font=("Times New Roman", 14),
+            cursor="sailboat",
+        )
         my_name9.grid(row=4, column=0, padx=5, pady=5, sticky=W)
-        my_name10 = Label(Detail_Frame, text="Full Stack Developer", font=("Times New Roman", 14, "bold") )
+        my_name10 = Label(
+            Detail_Frame,
+            text="Full Stack Developer",
+            font=("Times New Roman", 14, "bold"),
+            cursor="sailboat",
+        )
         my_name10.grid(row=4, column=1, padx=5, pady=5, sticky=W)
 
         # ====================== Github =============================
-        my_name7 = Label(Detail_Frame, text="Github:", font=("Times New Roman", 14) )
-        my_name7.grid(row=3, column=0, padx=5, pady=5, sticky=W)
-        my_name8 = Label(Detail_Frame, text="https://github.com/aliijaz133", font=("Times New Roman", 14, "bold") )
-        my_name8.grid(row=3, column=1, padx=5, pady=5, sticky=W)
+        my_name7 = Label(
+            Detail_Frame,
+            text="Github:",
+            font=("Times New Roman", 14),
+            cursor="sailboat",
+        )
+        my_name7.grid(row=5, column=0, padx=5, pady=5, sticky=W)
+        my_name8 = Label(
+            Detail_Frame,
+            text="https://github.com/aliijaz133",
+            font=("Times New Roman", 14, "bold"),
+            cursor="sailboat",
+        )
+        my_name8.grid(row=5, column=1, padx=5, pady=5, sticky=W)
+
+        # ====================== Linked In =============================
+        my_name7 = Label(
+            Detail_Frame,
+            text="Linked In:",
+            font=("Times New Roman", 14),
+            cursor="sailboat",
+        )
+        my_name7.grid(row=6, column=0, padx=5, pady=5, sticky=W)
+        my_name8 = Label(
+            Detail_Frame,
+            text="https://www.linkedin.com/in/ali-ijaz-07613b179/",
+            font=("Times New Roman", 14, "bold"),
+            cursor="sailboat",
+        )
+        my_name8.grid(row=6, column=1, padx=5, pady=5, sticky=W)
 
         # =========================================================================
         # ===================== Left Below Frame For Skills =======================
@@ -399,6 +469,24 @@ class Developer:
             cursor="xterm",
         )
         project_bullet_point_2.place(x=50, y=205)
+
+        # ======================== Github Git Notes = Gist =================================
+        heading_project_2 = Label(
+            Right_sec_Frame,
+            text="Git Notes:",
+            font=("Times New Roman", 15, "bold"),
+            cursor="xterm",
+        )
+        heading_project_2.place(x=10, y=240)
+        github_gist = "GitHub Gist is a Git-based platform provided by GitHub for sharing and managing code snippets, small scripts, or any other text-based content. It allows users to create and share Git repositories, known as gists, which are lightweight, version-controlled instances designed for simplicity and quick sharing. Gists can contain single or multiple files, and they are often used to showcase code examples, collaborate on small projects, or even draft content with version control. Gists can be public or private, and they offer a convenient way for developers to share, fork, and collaborate on code snippets without the overhead of a full-fledged repository."
+        project_desc_2 = Label(
+            Right_sec_Frame,
+            text=github_gist,
+            font=("Times New Roman", 13),
+            cursor="xterm",
+            wraplength=600,
+        )
+        project_desc_2.place(x=20, y=260)
 
     # =========================================================================
     # ============================== FUNCTIONS ================================

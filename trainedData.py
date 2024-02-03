@@ -30,13 +30,9 @@ class Image_Data_Trained:
 
     if __name__ == "__main__":
 
-        input_folder = (
-            "./asset/student-image"
-        )
+        input_folder = "./asset/student-image"
 
-        output_folder = (
-            "./asset/trained-data"
-        )
+        output_folder = "./asset/trained-data"
 
         detect_faces(input_folder, output_folder)
         messagebox.showinfo("Detected", "Face detection completed")

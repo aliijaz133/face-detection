@@ -252,7 +252,6 @@ class Face_Recognition_System:
         else:
             messagebox.showinfo("Image data not trained")
 
-
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
         window_width = self.root.winfo_width()
@@ -269,7 +268,6 @@ class Face_Recognition_System:
         window_width = self.root.winfo_width()
         self.title_lbl.config(width=window_width)
         self.update_bg_image()
-
 
 if __name__ == "__main__":
     root = Tk()
