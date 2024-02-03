@@ -1,13 +1,12 @@
 from tkinter import *
-from tkinter import ttk, Label, Frame
+from tkinter import ttk, Label, Frame, messagebox
 from PIL import Image, ImageTk, ImageDraw
-
+import webbrowser
 
 class Developer:
     def __init__(self, root):
         self.root = root
         self.root.title("Face Recognition System - Developer")
-
         # Create a Canvas widget as the background
         self.canvas = Canvas(self.root)
         self.canvas.pack(fill=BOTH, expand=YES)
@@ -159,11 +158,13 @@ class Developer:
             cursor="sailboat",
         )
         my_name7.grid(row=5, column=0, padx=5, pady=5, sticky=W)
-        my_name8 = Label(
+        my_name8 = Button(
             Detail_Frame,
             text="https://github.com/aliijaz133",
+            comman=self.open_github,
             font=("Times New Roman", 14, "bold"),
-            cursor="sailboat",
+            cursor="hand2",
+            relief=FLAT
         )
         my_name8.grid(row=5, column=1, padx=5, pady=5, sticky=W)
 
@@ -175,11 +176,13 @@ class Developer:
             cursor="sailboat",
         )
         my_name7.grid(row=6, column=0, padx=5, pady=5, sticky=W)
-        my_name8 = Label(
+        my_name8 = Button(
             Detail_Frame,
             text="https://www.linkedin.com/in/ali-ijaz-07613b179/",
+            command=self.open_linkedIn,
             font=("Times New Roman", 14, "bold"),
-            cursor="sailboat",
+            cursor="hand2",
+            relief=FLAT
         )
         my_name8.grid(row=6, column=1, padx=5, pady=5, sticky=W)
 
@@ -515,6 +518,11 @@ class Developer:
         draw.ellipse((0, 0, size[0], size[1]), fill=255)
         return mask
 
+    def open_github(self):
+        webbrowser.open_new("https://github.com/aliijaz133")
+
+    def open_linkedIn(self):
+        webbrowser.open_new("https://www.linkedin.com/in/ali-ijaz-07613b179/")
 
 if __name__ == "__main__":
     root = Tk()

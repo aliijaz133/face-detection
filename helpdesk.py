@@ -34,6 +34,18 @@ class Help_Desk:
 
         self.root.bind("<Configure>", self.on_resize)
 
+        #=======================================================================
+        #============================ LEFT FRAME ===============================
+        #=======================================================================
+
+        Right_Frame = Frame(self.root, bd=2)
+        Right_Frame.config(background='white')
+        Right_Frame.place(x=150, y=70, width=600, height=600, )
+
+        Right_sec_Frame  = LabelFrame(Right_Frame, bd=2, text="Helpdesk", font=("Times New Roman", 15, "bold"), cursor="hand2")
+        Right_sec_Frame.config(background="LightBlue")
+        Right_sec_Frame.place( x=10, y=10, width=580, height=580)
+
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
         window_width = self.root.winfo_width()
