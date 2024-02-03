@@ -397,7 +397,7 @@ class Student:
         self.student_table = ttk.Treeview(
             table_frame,
             columns=(
-                # "ID",
+                "ID",
                 "Name",
                 "Roll No",
                 "Gender",
@@ -414,7 +414,7 @@ class Student:
         scroll_x.config(command=self.student_table.xview)
         scroll_y.config(command=self.student_table.yview)
 
-        # self.student_table.heading("ID", text="ID")
+        self.student_table.heading("ID", text="ID")
         self.student_table.heading("Name", text="Name")
         self.student_table.heading("Roll No", text="Roll No")
         self.student_table.heading("Gender", text="Gender")
@@ -453,6 +453,7 @@ class Student:
                 "",
                 "end",
                 values=(
+                    record["_id"],
                     record["name"],
                     record["roll"],
                     record["gender"],
@@ -464,7 +465,6 @@ class Student:
                 ),
             )
 
-
     # =========================================================================
     # ========================== SAVE DATA IN SERVER ==========================
     # =========================================================================
@@ -474,8 +474,7 @@ class Student:
             self.var_name.get() == ""
             or self.var_roll.get() == ""
             or self.var_gender.get() == ""
-            or self.var_date.get() == "" 
-            or self.var_phone.get() == ""
+            or self.var_date.get() == "" or self.var_phone.get() == ""
             or self.var_email.get() == ""
             or self.var_address.get() == ""
             or self.var_year.get() == ""
@@ -538,8 +537,6 @@ class Student:
             self.var_phone.set(data[5])
             self.var_email.set(data[6])
             self.var_address.set(data[7])
-        else:
-            pass
 
     # =========================================================================
     # =========================== RESET USER FORM =============================
@@ -661,7 +658,7 @@ class Student:
                     "Photo added successfully during update",
                     parent=self.root,
                 )
-                self.show_data()
+                self.show_data()  # Refresh the table
             else:
                 messagebox.showerror(
                     "Error", "Failed to add photo during update", parent=self.root
