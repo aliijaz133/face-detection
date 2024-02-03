@@ -5,6 +5,8 @@ from tkinter import messagebox
 from tkinter import filedialog
 import pymongo
 from bson import ObjectId
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
 
 
 class Student:
@@ -353,6 +355,18 @@ class Student:
             fg="white",
         )
         add_photo_btn.grid(row=8, column=0, padx=5, pady=5, sticky=W)
+
+        #Generate Pdf File
+        pdf_gen_btn = Button(
+            Left_3rd_frame,
+            text="Generate PDF",
+            command=self.generate_pdf,
+            font=("Times New Roman", 13),
+            cursor="hand2",
+            bg="Orange",
+            fg="white",
+        )
+        pdf_gen_btn.grid(row=8, column=1, padx=5, pady=5, sticky=W)
 
         # Right label Frame
         Right_frame = LabelFrame(
@@ -713,6 +727,51 @@ class Student:
     #         )
 
     # --------------------------------------------------------------------------------------------------------------------------------
+
+    #==================================================================
+    #======================= GENERATE PDF =============================
+    #==================================================================
+    def generate_pdf(self):
+        selected_item = self.student_table.selection()
+        if not selected_item:
+            messagebox.showerror(
+                "Error", "Please select a record to generate PDF", parent=self.root
+            )
+            return
+
+        # Get selected data
+        data = self.student_table.item(selected_item)["values"]
+
+        # Create a PDF file
+        pdf_file_path = filedialog.asksaveasfilename(
+            defaultextension=".pdf",
+            filetypes=[("PDF files", "*.pdf")],
+            title="Save PDF",
+        )
+
+        if pdf_file_path:
+            pdf_canvas = canvas.Canvas(pdf_file_path, pagesize=letter)
+            pdf_canvas.setFont("Helvetica", 12)
+
+            # Write data to PDF
+            pdf_canvas.drawString(100, 750, "Student Details:")
+            pdf_canvas.drawString(100, 730, f"ID: {data[0]}")
+            pdf_canvas.drawString(100, 710, f"Name: {data[1]}")
+            pdf_canvas.drawString(100, 690, f"Roll No: {data[2]}")
+            pdf_canvas.drawString(100, 670, f"Gender: {data[3]}")
+            pdf_canvas.drawString(100, 650, f"DOB: {data[4]}")
+            pdf_canvas.drawString(100, 630, f"Phone No: {data[5]}")
+            pdf_canvas.drawString(100, 610, f"Email: {data[6]}")
+            pdf_canvas.drawString(100, 590, f"Address: {data[7]}")
+
+            # Close the PDF file
+            pdf_canvas.save()
+
+            messagebox.showinfo(
+                "Success", f"PDF generated successfully at {pdf_file_path}", parent=self.root
+            )
+
+    #-----------------------------------------------------------------------------------------------------------------------------
 
     def update_bg_image(self, event=None):
         window_width = self.root.winfo_width()
