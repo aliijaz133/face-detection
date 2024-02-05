@@ -404,21 +404,33 @@ class Student:
         )
         search_lbl.configure(bg="white")
 
-        # Search Student By Name or Roll No
         search_by = Label(
             search_lbl, text="Search Student By:", font=("Cursive", 13), bg="white"
         )
         search_by.grid(row=0, column=0, padx=10, sticky=W)
 
+        self.search_student_var = StringVar()
         search_student = ttk.Combobox(
-            search_lbl, font=("Times New Roman", 13), width=17, state="readonly"
+            search_lbl, font=("Times New Roman", 13), width=17, state="readonly", textvariable=self.search_student_var
         )
         search_student["value"] = ("Please select", "Name", "Roll No", "Phone No")
         search_student.current(0)
         search_student.grid(row=0, column=1, padx=2, pady=10, sticky=W)
 
-        search_entry = Entry(search_lbl, bd=2, font=("Times New Roman", 13))
+        self.search_entry_var = StringVar()
+        search_entry = Entry(search_lbl, bd=2, font=("Times New Roman", 13), textvariable=self.search_entry_var)
         search_entry.grid(row=0, column=2, padx=10, pady=10, sticky=W)
+
+        search_btn = Button(
+            search_lbl,
+            text="Search",
+            command=self.search_data,
+            bg="blue",
+            fg="white",
+            font=("Arival", 13),
+            cursor="hand2",
+        )
+        search_btn.grid(row=0, column=3, padx=10, pady=0, sticky=W)
 
         # Table frame
         table_frame = Frame(Right_frame, bd=2, relief=RIDGE, bg="white")
@@ -699,44 +711,42 @@ class Student:
     # =========================================================================
     # =========================== SEARCH STUDENT ==============================
     # =========================================================================
-    # def search_data(self):
-    #     search_criteria = search_student.get()
-    #     search_value = search_entry.get()
+    def search_data(self):
+        search_criteria = self.search_student_var.get()
+        search_value = self.search_entry_var.get()
 
-    #     if search_criteria == "Please select" or not search_value:
-    #         messagebox.showerror("Error", "Please select search criteria and enter search value", parent=self.root)
-    #         return
+        if search_criteria == "Please select" or not search_value:
+            messagebox.showerror("Error", "Please select search criteria and enter search value", parent=self.root)
+            return
 
-    #     # Clear existing data in the table
-    #     for item in self.student_table.get_children():
-    #         self.student_table.delete(item)
+        for item in self.student_table.get_children():
+            self.student_table.delete(item)
 
-    #     # Perform search based on selected criteria and value
-    #     if search_criteria == "Name":
-    #         cursor = self.collection.find({"name": {"$regex": f".*{search_value}.*", "$options": "i"}})
-    #     elif search_criteria == "Roll No":
-    #         cursor = self.collection.find({"roll": {"$regex": f".*{search_value}.*", "$options": "i"}})
-    #     elif search_criteria == "Phone No":
-    #         cursor = self.collection.find({"phone": {"$regex": f".*{search_value}.*", "$options": "i"}})
+        # Perform search based on selected criteria and value
+        if search_criteria == "Name":
+            cursor = self.collection.find({"name": {"$regex": f".*{search_value}.*", "$options": "i"}})
+        elif search_criteria == "Roll No":
+            cursor = self.collection.find({"roll": {"$regex": f".*{search_value}.*", "$options": "i"}})
+        elif search_criteria == "Phone No":
+            cursor = self.collection.find({"phone": {"$regex": f".*{search_value}.*", "$options": "i"}})
 
-    #     # Populate the table with search results
-    #     for record in cursor:
-    #         self.student_table.insert(
-    #             "",
-    #             "end",
-    #             values=(
-    #                 record["_id"],
-    #                 record["name"],
-    #                 record["roll"],
-    #                 record["gender"],
-    #                 record["dob"],
-    #                 record["phone"],
-    #                 record["email"],
-    #                 record["address"],
-    #                 record.get("department", ""),
-    #             )
-    #         )
-
+        # Populate the table with search results
+        for record in cursor:
+            self.student_table.insert(
+                "",
+                "end",
+                values=(
+                    record["_id"],
+                    record["name"],
+                    record["roll"],
+                    record["gender"],
+                    record["dob"],
+                    record["phone"],
+                    record["email"],
+                    record["address"],
+                    record.get("department", ""),
+                )
+            )
     # --------------------------------------------------------------------------------------------------------------------------------
 
     #==================================================================
