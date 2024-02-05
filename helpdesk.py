@@ -17,7 +17,7 @@ class Help_Desk:
         scrollbar.pack(side=RIGHT, fill=Y)
 
         # Load and set the background image
-        self.bg_img_path = "/home/usamaumer/PycharmProjects/pythonProject/asset/images/background_image.png"
+        self.bg_img_path = "./asset/images/background_image.png"
         self.update_bg_image()
 
         self.title_text = "Helpdesk"

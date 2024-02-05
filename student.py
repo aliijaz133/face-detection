@@ -58,7 +58,7 @@ class Student:
         scrollbar.pack(side=RIGHT, fill=Y)
 
         # Load and set the background image
-        self.bg_img_path = "/home/usamaumer/PycharmProjects/pythonProject/asset/images/background_image.png"
+        self.bg_img_path = "./asset/images/background_image.png"
         self.update_bg_image()
 
         # Create a title label with a specified font
@@ -80,7 +80,7 @@ class Student:
 
         # Student Detail Button
         img4 = PILImage.open(
-            r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/back-btn.png"
+            r"./asset/images/back-btn.png"
         )
         img4 = img4.resize((100, 40), PILImage.BICUBIC)
         self.photoImg4 = ImageTk.PhotoImage(img4)

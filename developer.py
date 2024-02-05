@@ -16,7 +16,7 @@ class Developer:
         scrollbar.pack(side=RIGHT, fill=Y)
 
         # Load and set the background image
-        self.bg_img_path = "/home/usamaumer/PycharmProjects/pythonProject/asset/images/background_image.png"
+        self.bg_img_path = "./asset/images/background_image.png"
         self.update_bg_image()
 
         self.title_text = "Developer"
@@ -57,7 +57,7 @@ class Developer:
         Image_Frame = Frame(Main_Frame, bg="white")
         Image_Frame.place(x=10, y=5, width=200, height=200)
         img_path = (
-            "/home/usamaumer/PycharmProjects/pythonProject/asset/images/ali_ijaz.png"
+            "./asset/images/ali_ijaz.png"
         )
         my_image = Image.open(img_path)
         my_image = my_image.resize((150, 150), Image.BICUBIC)

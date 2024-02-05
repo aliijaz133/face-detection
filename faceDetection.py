@@ -20,7 +20,7 @@ class Face_Detector:
         scrollbar.pack(side=RIGHT, fill=Y)
 
         # Background image
-        self.bg_img_path = "/home/usamaumer/PycharmProjects/pythonProject/asset/images/background_image.png"
+        self.bg_img_path = "./asset/images/background_image.png"
         self.update_bg_image()
 
         # Create a title label with a specified font

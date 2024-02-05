@@ -19,12 +19,12 @@ class Face_Recognition_System:
         scrollbar.pack(side=RIGHT, fill=Y)
 
         # Load and set the background image
-        self.bg_img_path = "/home/usamaumer/PycharmProjects/pythonProject/asset/images/background_image.png"
+        self.bg_img_path = "./asset/images/background_image.png"
         self.update_bg_image()
 
         # Create and set up the first image label
         img1 = Image.open(
-            "/home/usamaumer/PycharmProjects/pythonProject/asset/images/fav_icon.png"
+            "./asset/images/fav_icon.png"
         )
         img1 = img1.resize((100, 100), Image.BICUBIC)
         self.photoImg1 = ImageTk.PhotoImage(img1)
@@ -33,7 +33,7 @@ class Face_Recognition_System:
 
         # Create and set up the second image label
         img2 = Image.open(
-            "/home/usamaumer/PycharmProjects/pythonProject/dataset/images/aliijaz.jpg"
+            "./dataset/images/aliijaz.jpg"
         )
         img2 = img2.resize((100, 100), Image.BICUBIC)
         self.photoImg2 = ImageTk.PhotoImage(img2)
@@ -61,7 +61,7 @@ class Face_Recognition_System:
 
         # Student Detail Button
         img4 = Image.open(
-            r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/detail_icon.png"
+            r"./asset/images/detail_icon.png"
         )
         img4 = img4.resize((200, 200), Image.BICUBIC)
         self.photoImg4 = ImageTk.PhotoImage(img4)
@@ -81,7 +81,7 @@ class Face_Recognition_System:
 
         # Face Detector
         img5 = Image.open(
-            r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/face_detector.png"
+            r"./asset/images/face_detector.png"
         )
         img5 = img5.resize((200, 200), Image.BICUBIC)
         self.photoImg5 = ImageTk.PhotoImage(img5)
@@ -103,7 +103,7 @@ class Face_Recognition_System:
 
         # Show Attendance
         img6 = Image.open(
-            r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/attendance.jpg"
+            r"./asset/images/attendance.jpg"
         )
         img6 = img6.resize((200, 200), Image.BICUBIC)
         self.photoImg6 = ImageTk.PhotoImage(img6)
@@ -122,7 +122,7 @@ class Face_Recognition_System:
 
         # Help Desk Center
         img7 = Image.open(
-            r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/help-desk.png"
+            r"./asset/images/help-desk.png"
         )
         img7 = img7.resize((200, 200), Image.BICUBIC)
         self.photoImg7 = ImageTk.PhotoImage(img7)
@@ -144,7 +144,7 @@ class Face_Recognition_System:
 
         # Train Data
         img8 = Image.open(
-            r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/train_data.jpg"
+            r"./asset/images/train_data.jpg"
         )
         img8 = img8.resize((200, 200), Image.BICUBIC)
         self.photoImg8 = ImageTk.PhotoImage(img8)
@@ -164,7 +164,7 @@ class Face_Recognition_System:
 
         # Photos
         img9 = Image.open(
-            r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/photos.png"
+            r"./asset/images/photos.png"
         )
         img9 = img9.resize((200, 200), Image.BICUBIC)
         self.photoImg9 = ImageTk.PhotoImage(img9)
@@ -179,7 +179,7 @@ class Face_Recognition_System:
 
         # Developers
         img10 = Image.open(
-            r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/developer_image.png"
+            r"./asset/images/developer_image.png"
         )
         img10 = img10.resize((200, 200), Image.BICUBIC)
         self.photoImg10 = ImageTk.PhotoImage(img10)
@@ -199,7 +199,7 @@ class Face_Recognition_System:
 
         # Exiting
         img11 = Image.open(
-            r"/home/usamaumer/PycharmProjects/pythonProject/asset/images/exit_image.png"
+            r"./asset/images/exit_image.png"
         )
         img11 = img11.resize((200, 200), Image.BICUBIC)
         self.photoImg11 = ImageTk.PhotoImage(img11)
