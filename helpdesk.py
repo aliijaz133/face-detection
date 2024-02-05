@@ -34,6 +34,23 @@ class Help_Desk:
 
         self.root.bind("<Configure>", self.on_resize)
 
+
+	
+        # root = Tk()
+        # menu = Menu(root)
+        # root.config(menu=menu)
+        # filemenu = Menu(menu)
+        # menu.add_cascade(label='File', menu=filemenu)
+        # filemenu.add_command(label='New')
+        # filemenu.add_command(label='Open...')
+        # filemenu.add_separator()
+        # filemenu.add_command(label='Exit', command=root.quit)
+        # helpmenu = Menu(menu)
+        # menu.add_cascade(label='Help', menu=helpmenu)
+        # helpmenu.add_command(label='About')
+
+
+
         #=======================================================================
         #============================ LEFT FRAME ===============================
         #=======================================================================

@@ -198,17 +198,18 @@ class Face_Recognition_System:
         b13.place(x=800, y=718, width=220, height=50)
 
         # Exiting
+        root = Tk()
         img11 = Image.open(
             r"./asset/images/exit_image.png"
         )
         img11 = img11.resize((200, 200), Image.BICUBIC)
         self.photoImg11 = ImageTk.PhotoImage(img11)
 
-        b14 = Button(image=self.photoImg11, cursor="hand2")
+        b14 = Button(image=self.photoImg11, command=root.quit, cursor="hand2")
         b14.place(x=1050, y=500, width=220, height=220)
-
+        
         b15 = Button(
-            text="Exit", bg="blue", font=("Arival", 14), fg="white", cursor="hand2"
+            text="Exit", command=root.quit, bg="blue", font=("Arival", 14), fg="white", cursor="hand2"
         )
         b15.place(x=1050, y=718, width=220, height=50)
 
