@@ -79,13 +79,13 @@ class Student:
         self.root.bind("<Configure>", self.on_resize)
 
         # Student Detail Button
-        img4 = PILImage.open(
-            r"./asset/images/back-btn.png"
-        )
-        img4 = img4.resize((100, 40), PILImage.BICUBIC)
-        self.photoImg4 = ImageTk.PhotoImage(img4)
+        # img4 = PILImage.open(
+        #     r"./asset/images/back-btn.png"
+        # )
+        # img4 = img4.resize((100, 40), PILImage.BICUBIC)
+        # self.photoImg4 = ImageTk.PhotoImage(img4)
 
-        b1 = Button(image=self.photoImg4, command=self.dashboard, cursor="hand2")
+        b1 = Button(text="Back" , command=self.dashboard, cursor="hand2")
         b1.place(x=50, y=50, width=100, height=40)
 
         # Left label Frame
