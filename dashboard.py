@@ -9,6 +9,7 @@ class Face_Recognition_System:
     def __init__(self, root):
         self.root = root
         self.root.title("Face Recognition System")
+        root = Tk()
 
         # Create a Canvas widget as the background
         self.canvas = Canvas(self.root)
@@ -198,7 +199,7 @@ class Face_Recognition_System:
         b13.place(x=800, y=718, width=220, height=50)
 
         # Exiting
-        root = Tk()
+        
         img11 = Image.open(
             r"./asset/images/exit_image.png"
         )
