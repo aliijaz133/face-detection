@@ -1,7 +1,13 @@
+import bcrypt
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
-
+import pymongo
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import random
+import os
 
 class Help_Desk:
     def __init__(self, root):
@@ -34,23 +40,6 @@ class Help_Desk:
 
         self.root.bind("<Configure>", self.on_resize)
 
-
-	
-        # root = Tk()
-        # menu = Menu(root)
-        # root.config(menu=menu)
-        # filemenu = Menu(menu)
-        # menu.add_cascade(label='File', menu=filemenu)
-        # filemenu.add_command(label='New')
-        # filemenu.add_command(label='Open...')
-        # filemenu.add_separator()
-        # filemenu.add_command(label='Exit', command=root.quit)
-        # helpmenu = Menu(menu)
-        # menu.add_cascade(label='Help', menu=helpmenu)
-        # helpmenu.add_command(label='About')
-
-
-
         #=======================================================================
         #============================ LEFT FRAME ===============================
         #=======================================================================
@@ -62,6 +51,89 @@ class Help_Desk:
         Right_sec_Frame  = LabelFrame(Right_Frame, bd=2, text="User Login", font=("Times New Roman", 15, "bold"), cursor="hand2")
         Right_sec_Frame.config(background="LightBlue")
         Right_sec_Frame.place( x=10, y=10, width=580, height=580)
+
+        # Labels and Entry for user login
+        self.email_label = Label(Right_sec_Frame, text="Email:")
+        self.email_label.grid(row=0, column=0, padx=10, pady=10, sticky=W)
+        self.email_entry = Entry(Right_sec_Frame)
+        self.email_entry.grid(row=0, column=1, padx=10, pady=10)
+
+        self.password_label = Label(Right_sec_Frame, text="Password:")
+        self.password_label.grid(row=1, column=0, padx=10, pady=10, sticky=W)
+        self.password_entry = Entry(Right_sec_Frame, show="*")
+        self.password_entry.grid(row=1, column=1, padx=10, pady=10)
+
+        self.login_button = Button(Right_sec_Frame, text="Login", command=self.login)
+        self.login_button.grid(row=2, columnspan=2, pady=10)
+
+        self.forgot_password_button = Button(Right_sec_Frame, text="Forgot Password?", command=self.forgot_password)
+        self.forgot_password_button.grid(row=3, columnspan=2)
+
+        # MongoDB connection
+        self.client = pymongo.MongoClient("mongodb://localhost:27017/")
+        self.db = self.client["student-login"]  # Replace "your_database_name" with your database name
+        self.users_collection = self.db["users"]
+
+    def login(self):
+        # Get user input
+        email = self.email_entry.get()
+        password = self.password_entry.get()
+
+        # Find user by email
+        user = self.users_collection.find_one({"email": email})
+
+        if user:
+            # Check if password matches
+            if bcrypt.checkpw(password.encode('utf-8'), user['password']):
+                messagebox.showinfo("Success", "Login successful!")
+                self.root.destroy()  # Close the current window
+                os.system("python student.py")  # Open student.py
+            else:
+                messagebox.showerror("Error", "Invalid email or password.")
+        else:
+            messagebox.showerror("Error", "Invalid email or password.")
+
+    def forgot_password(self):
+        # Get user input
+        email = self.email_entry.get()
+
+        # Find user by email
+        user = self.users_collection.find_one({"email": email})
+
+        if user:
+            # Generate a new random password
+            new_password = ''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', k=8))
+
+            # Update user's password in the database
+            hashed_password = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
+            self.users_collection.update_one({"email": email}, {"$set": {"password": hashed_password}})
+
+            # Send email with new password
+            self.send_email(email, new_password)
+
+            messagebox.showinfo("Success", "New password sent to your email.")
+        else:
+            messagebox.showerror("Error", "Email not found.")
+
+    def send_email(self, email, new_password):
+        # Email configuration
+        sender_email = "aliejaz0072@gmail.com"
+        sender_password = "your_password"
+        smtp_server = "smtp.example.com"
+
+        # Create message
+        msg = MIMEMultipart()
+        msg['From'] = sender_email
+        msg['To'] = email
+        msg['Subject'] = "Password Recovery"
+        body = f"Your new password is: {new_password}"
+        msg.attach(MIMEText(body, 'plain'))
+
+        # Send email
+        with smtplib.SMTP(smtp_server, 587) as server:
+            server.starttls()
+            server.login(sender_email, sender_password)
+            server.send_message(msg)
 
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size
@@ -84,5 +156,5 @@ class Help_Desk:
 if __name__ == "__main__":
     root = Tk()
     obj = Help_Desk(root)
-    root.geometry("1440x1080")  # Set an initial size for the window
+    root.geometry("1440x1080")
     root.mainloop()

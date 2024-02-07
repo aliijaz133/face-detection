@@ -1,12 +1,18 @@
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
-
+import pymongo
+import bcrypt
 
 class Help_Desk:
     def __init__(self, root):
         self.root = root
         self.root.title("Face Recognition System - Helpdesk")
+
+        # Create MongoDB client
+        self.client = pymongo.MongoClient("mongodb://localhost:27017/")  # Update with your MongoDB connection URI
+        self.db = self.client["student-login"]  # Replace "your_database_name" with your database name
+        self.users_collection = self.db["users"]
 
         # Create a Canvas widget as the background
         self.canvas = Canvas(self.root)
@@ -33,24 +39,7 @@ class Help_Desk:
         self.canvas.columnconfigure(1, weight=1)
 
         self.root.bind("<Configure>", self.on_resize)
-
-
-	
-        # root = Tk()
-        # menu = Menu(root)
-        # root.config(menu=menu)
-        # filemenu = Menu(menu)
-        # menu.add_cascade(label='File', menu=filemenu)
-        # filemenu.add_command(label='New')
-        # filemenu.add_command(label='Open...')
-        # filemenu.add_separator()
-        # filemenu.add_command(label='Exit', command=root.quit)
-        # helpmenu = Menu(menu)
-        # menu.add_cascade(label='Help', menu=helpmenu)
-        # helpmenu.add_command(label='About')
-
-
-
+        
         #=======================================================================
         #============================ LEFT FRAME ===============================
         #=======================================================================
@@ -62,6 +51,51 @@ class Help_Desk:
         Right_sec_Frame  = LabelFrame(Right_Frame, bd=2, text="User Registration", font=("Times New Roman", 15, "bold"), cursor="hand2")
         Right_sec_Frame.config(background="LightBlue")
         Right_sec_Frame.place( x=10, y=10, width=580, height=580)
+
+        # Labels and Entry for user signup
+        self.username_label = Label(Right_sec_Frame, text="Username:")
+        self.username_label.grid(row=0, column=0, padx=10, pady=10, sticky=W)
+        self.username_entry = Entry(Right_sec_Frame)
+        self.username_entry.grid(row=0, column=1, padx=10, pady=10)
+
+        self.email_label = Label(Right_sec_Frame, text="Email:")
+        self.email_label.grid(row=1, column=0, padx=10, pady=10, sticky=W)
+        self.email_entry = Entry(Right_sec_Frame)
+        self.email_entry.grid(row=1, column=1, padx=10, pady=10)
+
+        self.password_label = Label(Right_sec_Frame, text="Password:")
+        self.password_label.grid(row=2, column=0, padx=10, pady=10, sticky=W)
+        self.password_entry = Entry(Right_sec_Frame, show="*")
+        self.password_entry.grid(row=2, column=1, padx=10, pady=10)
+
+        self.signup_button = Button(Right_sec_Frame, text="Sign Up", command=self.signup)
+        self.signup_button.grid(row=3, columnspan=2, pady=10)
+
+    def signup(self):
+        # Get user input
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+        email = self.email_entry.get()
+
+        # Check if email is unique
+        if self.users_collection.find_one({"email": email}):
+            messagebox.showerror("Error", "Email already exists. Please use a different email.")
+            return
+
+        # Hash the password using bcrypt
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
+        # Insert user data into MongoDB
+        user_data = {"username": username, "password": hashed_password, "email": email}
+        self.users_collection.insert_one(user_data)
+
+        # Show success message
+        messagebox.showinfo("Success", "User registered successfully.")
+
+        # Clear input fields after signup
+        self.username_entry.delete(0, END)
+        self.password_entry.delete(0, END)
+        self.email_entry.delete(0, END)
 
     def update_bg_image(self, event=None):
         # Resize and update the background image based on the window size

@@ -85,7 +85,7 @@ class Student:
         # img4 = img4.resize((100, 40), PILImage.BICUBIC)
         # self.photoImg4 = ImageTk.PhotoImage(img4)
 
-        b1 = Button(text="Back" , command=self.dashboard, cursor="hand2")
+        b1 = Button(text="Back" , command=self.back, cursor="hand2")
         b1.place(x=50, y=50, width=100, height=40)
 
         # Left label Frame
@@ -850,6 +850,10 @@ class Student:
             )
 
     #-----------------------------------------------------------------------------------------------------------------------------
+
+    def back(self):
+        self.root.destroy()
+        os.system("python dashboard.py")
 
     def update_bg_image(self, event=None):
         window_width = self.root.winfo_width()
